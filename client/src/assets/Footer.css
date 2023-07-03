@@ -1,0 +1,8 @@
+#footer {
+  box-sizing: border-box;
+  padding: 1rem;
+  border: 0.2rem solid pink;
+  border-radius: 1rem;
+  width: 15rem;
+  height: 30rem;
+}
