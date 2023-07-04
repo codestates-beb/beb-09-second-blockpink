@@ -11,6 +11,8 @@ import WritePage from "./pages/WritePage";
 import DetailPage from "./pages/DetailPage";
 import MintPage from "./pages/MintPage";
 import NotFound from "./pages/NotFound";
+import SignUpPage from "./pages/SignUpPage";
+import LoginPage from "./pages/LoginPage";
 
 export default function App() {
   return (
@@ -24,8 +26,10 @@ export default function App() {
         <Route path="/detail" element={<DetailPage />}>
           <Route path=":id" />
         </Route>
-        <Route path="/mint" element={<MintPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/mint" element={<MintPage />}></Route>
+        <Route path="/signup" element={<SignUpPage />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer />
     </Router>

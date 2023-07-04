@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import Footer from "../components/Footer";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Button, Divider } from "@mui/material";
 
@@ -13,7 +11,6 @@ export default function DetailPage() {
         style={{ margin: "0 4rem", padding: "1rem", alignItems: "center" }}
       >
         <Grid xs={3}>
-          <Sidebar />
         </Grid>
         <Grid xs={6}>
           <div className="post-info">
@@ -79,7 +76,6 @@ export default function DetailPage() {
           <Divider variant="middle" style={{ margin: "0 2rem 0 0" }} />
         </Grid>
         <Grid xs={3}>
-          <Footer />
         </Grid>
       </Grid>
     </div>
