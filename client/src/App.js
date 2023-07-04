@@ -25,7 +25,6 @@ export default function App() {
         <Route path="/mint" element={<MintPage />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
-      <Footer />
     </Router>
   );
 }

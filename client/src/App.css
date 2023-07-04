@@ -1,0 +1,24 @@
+.post-content {
+  border: 0.1rem solid pink;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  height: 15rem;
+  margin: 1rem 2rem 1rem 0;
+  padding: 1rem;
+}
+
+.post-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.post-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+a {
+  text-decoration: none !important;
+}
