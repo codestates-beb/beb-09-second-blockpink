@@ -1,4 +1,4 @@
-//특정 유저 정보를 가져오는 API 
+//1.유저 간 토큰 전송 API
 const express = require("express");
 const router = express.Router();
 

@@ -10,20 +10,23 @@ const ethFaucetRouter = require("./routes/ethFaucet");
 const joinRouter = require("./routes/join");
 const nftRouter = require("./routes/nft");
 const postsRouter = require("./routes/posts");
-const transferRouter = require("./routes/posts");
-const usersRouter = require("./routes/posts");
+const sendTokenRouter = require("./routes/sendToken");
+const usersRouter = require("./routes/users");
+const serverRouter = require("./routes/init")
+//
 
 
 
 app.use(cors());
 app.use(express.json());
 app.use("/auth", authRouter);
-app.use("/ethFaucet", ethFaucetRouter);
-app.use("/comment", joinRouter);
-app.use("/server", nftRouter);
+app.use("/eth-faucet", ethFaucetRouter);
+app.use("/join", joinRouter);
+app.use("/nft", nftRouter);
 app.use("/page", postsRouter);
-app.use("/nft", transferRouter);
-app.use("/token", usersRouter);
+app.use("/send-token", sendTokenRouter);
+app.use("/users", usersRouter);
+app.use("/", serverRouter);
 
 
 db.sequelize
