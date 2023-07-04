@@ -10,6 +10,7 @@ import WritePage from "./pages/WritePage";
 import DetailPage from "./pages/DetailPage";
 import MintPage from "./pages/MintPage";
 import NotFound from "./pages/NotFound";
+import SignUpPage from "./pages/SignUpPage";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path=":id"></Route>
         </Route>
         <Route path="/mint" element={<MintPage />}></Route>
+        <Route path="/signup" element={<SignUpPage />}></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </Router>

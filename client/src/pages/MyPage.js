@@ -4,7 +4,7 @@ export default function MyPage() {
   return (
     <div>
     <div>
-            <Banner/>
+            {/* <Banner/>
             <ProfileImg/>
             <UserInfo/>
             <Item/>
@@ -13,7 +13,7 @@ export default function MyPage() {
               <UserBBanner/>
               <UserBInfo/>
               <button>Send Tokens</button>
-            </div>
+            </div> */}
     </div>
     </div>
   );

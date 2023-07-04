@@ -1,70 +1,137 @@
-import React from "react";
+import React, { useState } from "react";
+import { 
+    Box, 
+    Button, 
+    Typography, 
+  } from '@mui/material';
+import "../assets/SignUpPage.css";
 
-const SignUp = () => {
+const SignUpPage = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordRetype, setPasswordRetype] = useState("");
+  const [mismatch, setMismatch] = useState(false);
+  const [failureMessage, setFailureMessage] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
 
-    return (
-        <div>
-            <div>
-                <h1>Sign Up</h1>
-                <label>ID</label>
-                <input type="text" id="username"/>
-                <div class="failure-message hide">ID should be longer than 4 characters</div>
-                <div class="success-message hide">You can use this ID</div>
+  const handleUsernameChange = (event) => {
+    const value = event.target.value;
+    setUsername(value);
 
-                <label>Password</label>
-                <input type="password" id="password"/>
+    if (isMoreThan4Length(value)) {
+      setFailureMessage(false);
+      setSuccessMessage(true);
+    } else {
+      setFailureMessage(true);
+      setSuccessMessage(false);
+    }
+  };
 
-                <label>Confirm Password</label>
-                <input type="password" id="password-retype"/>
-                <div class="mismatch-message hide"></div>
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    checkPasswordMatch(event.target.value, passwordRetype);
+  };
 
-                <button>Sign Up</button>
+  const handlePasswordRetypeChange = (event) => {
+    setPasswordRetype(event.target.value);
+    checkPasswordMatch(password, event.target.value);
+  };
+
+  const checkPasswordMatch = (password1, password2) => {
+    if (password1 === password2) {
+      setMismatch(false);
+    } else {
+      setMismatch(true);
+    }
+  };
+
+  const isMoreThan4Length = (value) => {
+    return value.length >= 4;
+  };
+
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 2,
+        width: '646px',
+        maxWidth: '100%',
+        margin: '0 auto',
+        marginTop: '100px',
+      }}
+    >
+      <Box sx={{ alignSelf: 'flex-start' }}>
+        <Typography variant="h3" sx={{ fontWeight: 'bold' }}>Sign Up</Typography>
+      </Box>
+      <Box sx={{ alignSelf: 'flex-start' }}>
+        <Typography variant="caption" sx={{ fontSize: '0.8rem' }}>
+          <Box sx={{ alignSelf: 'flex-start' }}>
+            <Typography variant='body1' sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+              ID <span style={{ fontWeight: 'bold' }}>*</span>
+            </Typography>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={handleUsernameChange}
+            />
+            <div className={failureMessage ? 'failure-message' : 'failure-message hide'}>
+              Your ID should be longer than 4 characters
             </div>
+            <div className={successMessage ? 'success-message' : 'success-message hide'}>
+              You can use this ID
+            </div>
+            </Box>
+        </Typography>
+      </Box>
+
+      <Box sx={{ alignSelf: 'flex-start' }}>
+        <Typography variant='body1' sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+          Password <span style={{ fontWeight: 'bold' }}>*</span>
+        </Typography>
+        <input
+          type="password"
+          id="password"
+          value={password}
+          onChange={handlePasswordChange}
+        />
+      </Box>
+
+      <Box sx={{ alignSelf: 'flex-start' }}>
+        <Typography variant='body1' sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+          Confirm Password <span style={{ fontWeight: 'bold' }}>*</span>
+        </Typography>
+        <input
+          type="password"
+          id="password-retype"
+          value={passwordRetype}
+          onChange={handlePasswordRetypeChange}
+        />
+        <div className={mismatch ? 'mismatch-message' : 'mismatch-message hide'}>
+          Passwords do not match
         </div>
-    );
+      </Box>
+      <Box
+        sx={{
+          borderBottom: '1px solid rgb(204, 204, 204)',
+          width: '100%',
+          margin: '20px 0'
+        }}
+      ></Box>
+      <Button
+        variant="contained"
+        sx={{
+          alignSelf: 'flex-start',
+          width: '120px',
+          height: '50px',
+          borderRadius: '15px'
+        }}
+      >
+        Sign Up
+      </Button>
+    </Box>
+  );
 };
-
-let elInputUsername = document.querySelector('#username')
-let elFailureMessage = document.querySelector('.failure-message')
-let elSuccessMessage = document.querySelector('.success-message')
-
-let elInputPassword = document.querySelector("#password")
-let elInputPasswordRetype = document.querySelector("#password-retype")
-let mismatchMessage = document.querySelector(".mismatch-message")
-
-elInputPasswordRetype.onkeyup = function () {
-  if (isMatch(elInputPassword.value, elInputPasswordRetype.value)) {
-    mismatchMessage.classList.add('hide');
-  } else {
-    mismatchMessage.classList.remove('hide')
-  }
-}
-
-elInputUsername.onkeyup = function () {
-  console.log(elInputUsername.value)
-
-if (isMoreThan4Length(elInputUsername.value)) {
-  elSuccessMessage.classList.remove('hide')
-  elFailureMessage.classList.add('hide')
-}
-else {
-  elSuccessMessage.classList.add('hide')
-  elFailureMessage.classList.remove('hide')
-}
-}
-
-function isMoreThan4Length(value) {
-  return value.length >= 4
-}
-
-function isMatch (password1, password2) {
-  if (password1 === password2) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-
-
-export default SignUp;
+export default SignUpPage;
