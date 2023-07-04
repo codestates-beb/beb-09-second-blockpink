@@ -10,6 +10,7 @@ import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider'; // Divider 추가
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -55,7 +56,6 @@ export default function WritePage() {
       target: { value },
     } = event;
     setPersonName(
-      // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
@@ -76,16 +76,28 @@ export default function WritePage() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        mt: 5,
+        mt: 3,
         ml: 5
       }}
     >
+      <Box
+        component="h2"
+        sx={{
+          fontWeight: '800',
+          fontSize: '35px',
+          m: 0,
+        }}
+      >
+        게시글작성
+      </Box>
+      <Divider sx={{ width: '60%', my: 2, backgroundColor: 'black' }} />
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
           gap: 2,
+          width: '100%',
         }}
       >
         <TextField
@@ -94,8 +106,9 @@ export default function WritePage() {
           onChange={(event) => setTitle(event.target.value)}
           margin="normal"
           required
+          sx={{ width: '29%' }}
         />
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <FormControl sx={{ mt: 1, width: '29.6%' }}>
           <InputLabel htmlFor="grouped-native-select">카테고리</InputLabel>
           <Select native defaultValue="" id="grouped-native-select" label="Grouping">
             <option aria-label="None" value="" />
@@ -110,6 +123,7 @@ export default function WritePage() {
           </Select>
         </FormControl>
       </Box>
+      <Divider sx={{ width: '60%', my: 2, backgroundColor: 'black' }} /> 
       <TextField
         label="내용"
         value={content}
@@ -117,13 +131,23 @@ export default function WritePage() {
         margin="normal"
         required
         multiline
-        rows={10}
-        sx={{ width: '50%' }}
+        rows={13}
+        sx={{ width: '60%' }}
       />
-      <Button type="submit" variant="contained" color="primary" sx={{ mt: 2, minWidth: 200 }}>
-        생성
-      </Button>
-      <FormControl sx={{ mt: 2, width: 200 }}>
+      <Divider sx={{ width: '60%', my: 2, backgroundColor: 'black' }} />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 2,
+          width: '60%',
+        }}
+      >
+        <Button type="submit" variant="contained" sx={{ mt: 2, width: '50%', height: 55, backgroundColor: '#BE3455',  '&:hover': { backgroundColor: '#BE3455' }}}>
+          생성
+        </Button>
+        <FormControl sx={{ mt: 2, width: '50%' }}>
           <InputLabel id="demo-multiple-chip-label">태그</InputLabel>
           <Select
             labelId="demo-multiple-chip-label"
@@ -152,6 +176,8 @@ export default function WritePage() {
             ))}
           </Select>
         </FormControl>
+      </Box>
+      <Divider sx={{ width: '60%', my: 4, backgroundColor: 'black' }} />
     </Box>
   );
 }
