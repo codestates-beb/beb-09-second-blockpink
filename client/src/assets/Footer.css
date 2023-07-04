@@ -1,8 +1,11 @@
 #footer {
   box-sizing: border-box;
-  padding: 1rem;
-  border: 0.2rem solid pink;
-  border-radius: 1rem;
-  width: 15rem;
-  height: 30rem;
+  position: fixed;
+  bottom: 0%;
+  right: 0%;
+  background-color: #fff;
+  padding: 1%;
+  width: 15%;
+  height: 95%;
+  border: 1px solid #d3d3d3;
 }

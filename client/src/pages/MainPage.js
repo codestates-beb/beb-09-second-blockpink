@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -29,7 +30,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function MainPage() {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState({});
   const [viewCount, setViewCount] = useState(0);
 
   useEffect(() => {
@@ -39,17 +40,18 @@ export default function MainPage() {
       .catch((error) => console.error(error));
   }, []);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleExpandClick = (cardIndex) => {
+    setExpanded((prevExpanded) => ({
+      ...prevExpanded,
+      [cardIndex]: !prevExpanded[cardIndex],
+    }));
   };
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <Card sx={{ maxWidth: '35%', marginBottom: '2%' }}>
+      <Card sx={{ maxWidth: '40%', marginTop: '7.5%', marginBottom: '2%' }}>
         <CardHeader
-          avatar={
-            <Avatar alt="Remy Sharp" src="/profileimage.jpg" />
-          }
+          avatar={<Avatar alt="Remy Sharp" src="/profileimage.jpg" />}
           action={
             <IconButton aria-label="settings">
               <MoreVertIcon />
@@ -58,15 +60,12 @@ export default function MainPage() {
           title="블록핑크"
           subheader="2023년 7월 3일"
         />
-        <CardMedia
-          component="img"
-          height='400'
-          image="/picture1.jpg"
-          alt="Paella dish"
-        />
+        <Link to="/detail">
+          <CardMedia component="img" height="450" image="/picture1.jpg" alt="Paella dish" />
+        </Link>
         <CardContent>
-          <Typography variant="body2" color="#000" >
-            좋은 책과 읽는 것은 과거 몇 세기의 가장 훌륭한 사람들과 이야기를 나누는 것과 같다.  -데카르트-
+          <Typography variant="body2" color="#000">
+            좋은 책과 읽는 것은 과거 몇 세기의 가장 훌륭한 사람들과 이야기를 나누는 것과 같다. -데카르트-
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -82,36 +81,31 @@ export default function MainPage() {
           <IconButton aria-label="Visibility">
             <VisibilityIcon />
           </IconButton>
-          <Typography variant="body2" color="#000" >{`조회수: ${viewCount}`}</Typography>
+          <Typography variant="body2" color="#000">{`조회수: ${viewCount}`}</Typography>
           <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
+            expand={expanded[0]}
+            onClick={() => handleExpandClick(0)}
+            aria-expanded={expanded[0]}
             aria-label="자세히 보기"
           >
             <ExpandMoreIcon />
           </ExpandMore>
         </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ height: 'auto' }}>
+        <Collapse in={expanded[0]} timeout="auto" unmountOnExit sx={{ height: 'auto' }}>
           <CardContent>
-            <Typography paragraph variant="body3" color="#000" >
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-              medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-              occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-              large plate and set aside, leaving chicken and chorizo in the pan. Add
-              pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-              stirring often until thickened and fragrant, about 10 minutes. Add
-              saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+            <Typography paragraph variant="body3" color="#000">
+              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
+              heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
+              browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
+              chicken and chorizo in the pan.
             </Typography>
           </CardContent>
         </Collapse>
       </Card>
 
-      <Card sx={{ maxWidth: '35%' }}>
+      <Card sx={{ maxWidth: '40%', marginBottom: '2%'}}>
         <CardHeader
-          avatar={
-            <Avatar alt="Remy Sharp" src="/profileimage.jpg" />
-          }
+          avatar={<Avatar alt="Remy Sharp" src="/profileimage.jpg" />}
           action={
             <IconButton aria-label="settings">
               <MoreVertIcon />
@@ -120,15 +114,12 @@ export default function MainPage() {
           title="블록핑크"
           subheader="2023년 7월 3일"
         />
-        <CardMedia
-          component="img"
-          height='400'
-          image="/picture1.jpg"
-          alt="Paella dish"
-        />
+        <Link to="/detail">
+          <CardMedia component="img" height="450" image="/picture1.jpg" alt="Paella dish" />
+        </Link>
         <CardContent>
-          <Typography variant="body2" color="#000" >
-            좋은 책과 읽는 것은 과거 몇 세기의 가장 훌륭한 사람들과 이야기를 나누는 것과 같다.  -데카르트-
+          <Typography variant="body2" color="#000">
+            좋은 책과 읽는 것은 과거 몇 세기의 가장 훌륭한 사람들과 이야기를 나누는 것과 같다. -데카르트-
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -144,26 +135,23 @@ export default function MainPage() {
           <IconButton aria-label="Visibility">
             <VisibilityIcon />
           </IconButton>
-          <Typography variant="body2" color="#000" >{`조회수: ${viewCount}`}</Typography>
+          <Typography variant="body2" color="#000">{`조회수: ${viewCount}`}</Typography>
           <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
+            expand={expanded[1]}
+            onClick={() => handleExpandClick(1)}
+            aria-expanded={expanded[1]}
             aria-label="자세히 보기"
           >
             <ExpandMoreIcon />
           </ExpandMore>
         </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit sx={{ height: 'auto' }}>
+        <Collapse in={expanded[1]} timeout="auto" unmountOnExit sx={{ height: 'auto' }}>
           <CardContent>
-            <Typography paragraph variant="body3" color="#000" >
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-              medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-              occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-              large plate and set aside, leaving chicken and chorizo in the pan. Add
-              pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-              stirring often until thickened and fragrant, about 10 minutes. Add
-              saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+            <Typography paragraph variant="body3" color="#000">
+              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
+              heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
+              browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
+              chicken and chorizo in the pan.
             </Typography>
           </CardContent>
         </Collapse>

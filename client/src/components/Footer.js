@@ -1,12 +1,15 @@
 import React from "react";
-import Grid from "@mui/material/Unstable_Grid2";
-import { Container } from "@mui/material";
 
 import "../assets/Footer.css";
 
+const footerStyle = {
+  position: 'fixed',
+  backgroundColor: '#f5f5f5',
+};
+
 export default function Footer() {
   return (
-    <div>
+    <div style={footerStyle}>
       <div id="footer">Footer</div>
     </div>
   );
