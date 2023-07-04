@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class ServerAccount extends Model {
+  class NFT extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,14 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  ServerAccount.init({
-    address: DataTypes.STRING,
-    privatekey: DataTypes.STRING,
-    eth_amount: DataTypes.FLOAT,
-    token_amount: DataTypes.FLOAT
+  NFT.init({
+    n_userId: DataTypes.INTEGER,
+    token_id: DataTypes.INTEGER,
+    ipfs_hash: DataTypes.STRING,
+    tx_hash: DataTypes.STRING,
+    description: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'ServerAccount',
+    modelName: 'NFT',
   });
-  return ServerAccount;
+  return NFT;
 };
