@@ -21,7 +21,7 @@ contract NFTLootBox is ERC721URIStorage, Ownable {
         address recipient,
         string memory tokenURI
     ) public onlyOwner returns (uint256) {
-        require(token.balanceOf(recipient) > nftPrice);
+        require(token.balanceOf(recipient) >= nftPrice);
 
         token.transferFrom(recipient, msg.sender, nftPrice);
 
