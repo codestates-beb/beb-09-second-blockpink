@@ -19,7 +19,7 @@ const sidebarStyle = {
   paddingTop: "5.5%",
   overflowY: "auto",
   border: "1px solid #d3d3d3",
-  boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.2)",
+  boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.1)",
 };
 
 const linkStyle = {

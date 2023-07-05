@@ -70,7 +70,7 @@ export default function Header() {
           </Link>
         </Grid>
         <Grid item xs={5.6}>
-          <Box sx={{ width: "85%", borderRadius: 20, boxShadow: 1 }}>
+          <Box sx={{ width: "84.5%", borderRadius: 20, boxShadow: 1 }}>
             <OutlinedInput
               placeholder=""
               size="small"
