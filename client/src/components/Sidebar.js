@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
@@ -34,6 +34,10 @@ const textStyle = {
   fontWeight: "bold",
 };
 
+const activeLinkStyle = {
+  color: "#ff006c",
+};
+
 const searchStyle = {
   marginTop: "20%",
 };
@@ -45,6 +49,12 @@ const inputStyle = {
 };
 
 export default function Sidebar() {
+  const location = useLocation();
+
+  const isActiveLink = (pathname) => {
+    return location.pathname === pathname;
+  };
+
   return (
     <div style={sidebarStyle}>
       <div style={linkStyle}>
@@ -53,7 +63,11 @@ export default function Sidebar() {
           component={Link}
           to="/"
           startIcon={<HomeIcon />}
-          style={textStyle}
+          style={
+            isActiveLink("/")
+              ? { ...textStyle, ...activeLinkStyle }
+              : textStyle
+          }
         >
           Home
         </Button>
@@ -64,7 +78,11 @@ export default function Sidebar() {
           component={Link}
           to="/mypage"
           startIcon={<PersonIcon />}
-          style={textStyle}
+          style={
+            isActiveLink("/mypage")
+              ? { ...textStyle, ...activeLinkStyle }
+              : textStyle
+          }
         >
           Profile
         </Button>
@@ -73,9 +91,13 @@ export default function Sidebar() {
         <Button
           color="secondary"
           component={Link}
-          to="/"
+          to="/notifications"
           startIcon={<NotificationsIcon />}
-          style={textStyle}
+          style={
+            isActiveLink("/notifications")
+              ? { ...textStyle, ...activeLinkStyle }
+              : textStyle
+          }
         >
           Notifications
         </Button>
@@ -86,7 +108,11 @@ export default function Sidebar() {
           component={Link}
           to="/mint"
           startIcon={<MonetizationOnIcon />}
-          style={textStyle}
+          style={
+            isActiveLink("/mint")
+              ? { ...textStyle, ...activeLinkStyle }
+              : textStyle
+          }
         >
           NFT Market
         </Button>
@@ -97,7 +123,11 @@ export default function Sidebar() {
           component={Link}
           to="/write"
           startIcon={<PostAddIcon />}
-          style={textStyle}
+          style={
+            isActiveLink("/write")
+              ? { ...textStyle, ...activeLinkStyle }
+              : textStyle
+          }
         >
           Post
         </Button>

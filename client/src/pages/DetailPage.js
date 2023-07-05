@@ -1,15 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Grid from "@mui/material/Unstable_Grid2";
-import { Box, Button, Divider } from "@mui/material";
+import { Box } from "@mui/material";
 
-import Posting from "../components/Posting";
+import PostingDetail from "../components/PostingDetail";
+import Comment from "../components/Comment";
+import CommentCreate from "../components/CommentCreate";
 
 export default function DetailPage() {
   return (
     <div>
       <Box display="flex" flexDirection="column" alignItems="center">
-        <Posting />
+        <PostingDetail />
+        <Comment />
+        <Comment />
+        <CommentCreate />
       </Box>
     </div>
   );
