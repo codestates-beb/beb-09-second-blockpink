@@ -1,0 +1,66 @@
+.boxHover {
+    position: relative;
+    transition: 0.3s;
+  }
+  
+  .boxHover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #888;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .boxHover:hover::after {
+    opacity: 0.5;
+  }
+  
+  .fileInput {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.3s;
+  }
+  
+  .fileInput:hover {
+    background-color: #888;
+  }
+  
+  .nftName {
+    width: 598px;
+    height: 48px;
+    outline: none;
+    padding: 0 12px 0 10px;
+    border: 1px solid rgb(229, 232, 235);
+    border-radius: 10px;
+    margin-top: 15px;
+  }
+  
+  .nftName:focus {
+    border: 1px solid rgb(0, 0, 0);
+  }
+  
+  .description {
+    width: 100%;
+    height: 100px;
+    outline: none;
+    padding: 10px 12px 0 10px;
+    border: 1px solid rgb(229, 232, 235);
+    border-radius: 10px;
+    margin-top: 15px;
+  }
+  
+  .description::placeholder {
+    font-weight: 500;
+  }
+  
+  /* modal */
+  .logoutModal > div > div {
+    width: 400px;
+    height: 200px;
+  }
+  

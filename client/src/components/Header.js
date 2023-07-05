@@ -44,12 +44,14 @@ const ethFaucetButtonStyle = {
   color: "#000",
   fontWeight: "bold",
   marginLeft: "50px",
+  whiteSpace: "nowrap",
 };
 
 const loginButtonStyle = {
   color: "#000",
   fontWeight: "bold",
   paddingLeft: "8.5%",
+  whiteSpace: "nowrap",
 };
 
 export default function Header() {
@@ -83,13 +85,26 @@ export default function Header() {
             />
           </Box>
         </Grid>
-        <Grid item xs={3} style={{ display: "flex" }}>
+        <Grid
+          item
+          xs={2.5}
+          style={{ display: "flex", justifyContent: "flex-end" }}
+        >
           <Button
             color="secondary"
             startIcon={<LocalAtmIcon />}
             style={ethFaucetButtonStyle}
           >
-            ETH faucet
+            <span
+              style={{
+                display: "inline-block",
+                maxWidth: "100%",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              ETH faucet
+            </span>
           </Button>
           <Button
             startIcon={<AccountCircleOutlinedIcon />}
