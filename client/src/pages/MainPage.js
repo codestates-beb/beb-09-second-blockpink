@@ -49,7 +49,7 @@ export default function MainPage() {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <Card sx={{ maxWidth: '40%', marginTop: '7.5%', marginBottom: '2%' }}>
+      <Card sx={{ maxWidth: '40%', marginTop: { xs: '23%', sm: '15%', md: '11%', lg: '7.5%', xl: '4%' }, marginBottom: '2%' }}>
         <CardHeader
           avatar={<Avatar alt="Remy Sharp" src="/profileimage.jpg" />}
           action={
