@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import { Button, Divider, Box, OutlinedInput, InputAdornment } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Box,
+  OutlinedInput,
+  InputAdornment,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import LocalAtmIcon from '@mui/icons-material/LocalAtm'; 
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 const headerStyle = {
@@ -79,13 +85,24 @@ export default function Header() {
             />
           </Box>
         </Grid>
-        <Grid item xs={2.5} style={{ display: "flex", justifyContent: "flex-end" }}>
+        <Grid
+          item
+          xs={2.5}
+          style={{ display: "flex", justifyContent: "flex-end" }}
+        >
           <Button
             color="secondary"
             startIcon={<LocalAtmIcon />}
             style={ethFaucetButtonStyle}
           >
-            <span style={{ display: "inline-block", maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis" }}>
+            <span
+              style={{
+                display: "inline-block",
+                maxWidth: "100%",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
               ETH faucet
             </span>
           </Button>
