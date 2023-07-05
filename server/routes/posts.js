@@ -5,14 +5,19 @@
 const express = require("express");
 const router = express.Router();
 
-// 특정 게시글 조회 GET API(특정 게시글 눌렸을 때)
-router.post("/", (req, res, next) => {
+const {
+  getPostAll,
+  getPostById,
+  registerPostWithTokenReward,
+} = require("../controller/postController");
 
-});
+// 모든 게시글 조회 GET API
+router.get("/", getPostAll);
+
+// 특정 게시글 조회 GET API(특정 게시글 눌렸을 때)
+router.get("/:id", getPostById);
 
 // 글 작성 시 보상 토큰 API
-router.post("/register", (req, res, next) => {
-
-});
+router.post("/register", registerPostWithTokenReward);
 
 module.exports = router;
