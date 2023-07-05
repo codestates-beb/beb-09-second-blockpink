@@ -9,66 +9,96 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
 
 const sidebarStyle = {
-  position: 'fixed',
+  position: "fixed",
   left: 0,
   top: 0,
-  width: '15%',
-  height: '100%',
-  backgroundColor: '#fff',
-  padding: '1.5%',
-  paddingTop: '5.5%',
-  overflowY: 'auto',
-  border: '1px solid #d3d3d3',
-  boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)',
+  width: "15%",
+  height: "100%",
+  backgroundColor: "#fff",
+  padding: "1.5%",
+  paddingTop: "5.5%",
+  overflowY: "auto",
+  border: "1px solid #d3d3d3",
+  boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.2)",
 };
 
 const linkStyle = {
-  display: 'block',
-  paddingTop: '30px',
-  textDecoration: 'none',
+  display: "block",
+  paddingTop: "30px",
+  textDecoration: "none",
 };
 
 const textStyle = {
-  color: 'black',
-  fontSize: '15px',
-  fontWeight: 'bold',
+  color: "black",
+  fontSize: "15px",
+  fontWeight: "bold",
 };
 
 const searchStyle = {
-  marginTop: '20%',
+  marginTop: "20%",
 };
 
 const inputStyle = {
-  borderColor: 'transparent',
-  boxShadow: '0px 2px 5px 0px rgba(0, 0, 0, 0.2)',
-  borderRadius: '15px',
+  borderColor: "transparent",
+  boxShadow: "0px 2px 5px 0px rgba(0, 0, 0, 0.2)",
+  borderRadius: "15px",
 };
 
 export default function Sidebar() {
   return (
     <div style={sidebarStyle}>
       <div style={linkStyle}>
-        <Button color="secondary" component={Link} to="/" startIcon={<HomeIcon />} style={textStyle}>
+        <Button
+          color="secondary"
+          component={Link}
+          to="/"
+          startIcon={<HomeIcon />}
+          style={textStyle}
+        >
           Home
         </Button>
       </div>
       <div style={linkStyle}>
-        <Button color="secondary" component={Link} to="/mypage" startIcon={<PersonIcon />} style={textStyle}>
+        <Button
+          color="secondary"
+          component={Link}
+          to="/mypage"
+          startIcon={<PersonIcon />}
+          style={textStyle}
+        >
           Profile
         </Button>
       </div>
       <div style={linkStyle}>
-        <Button color="secondary" component={Link} to="/" startIcon={<NotificationsIcon />} style={textStyle}>
+        <Button
+          color="secondary"
+          component={Link}
+          to="/"
+          startIcon={<NotificationsIcon />}
+          style={textStyle}
+        >
           Notifications
         </Button>
       </div>
       <div style={linkStyle}>
-        <Button color="secondary" component={Link} to="/mint" startIcon={<MonetizationOnIcon />} style={textStyle}>
+        <Button
+          color="secondary"
+          component={Link}
+          to="/mint"
+          startIcon={<MonetizationOnIcon />}
+          style={textStyle}
+        >
           NFT Market
         </Button>
       </div>
       <div style={linkStyle}>
-        <Button color="secondary" component={Link} to="/write" startIcon={<PostAddIcon />} style={textStyle}>
+        <Button
+          color="secondary"
+          component={Link}
+          to="/write"
+          startIcon={<PostAddIcon />}
+          style={textStyle}
+        >
           Post
         </Button>
       </div>

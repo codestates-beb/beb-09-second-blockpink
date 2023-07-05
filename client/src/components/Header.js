@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import { Button, Divider, Box, OutlinedInput, InputAdornment } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Box,
+  OutlinedInput,
+  InputAdornment,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import LocalAtmIcon from '@mui/icons-material/LocalAtm'; 
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 const headerStyle = {
@@ -43,7 +49,7 @@ const ethFaucetButtonStyle = {
 const loginButtonStyle = {
   color: "#000",
   fontWeight: "bold",
-  paddingLeft: "8.5%"
+  paddingLeft: "8.5%",
 };
 
 export default function Header() {
