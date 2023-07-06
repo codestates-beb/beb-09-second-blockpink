@@ -13,13 +13,13 @@ router.post('/', async (req, res, next) => {
     // const token = req.headers.authorization;
 
     if (!token) {
-      return res.status(401).json({ message: '토큰이 필요합니다.' });
+      return res.status(401).json({ msg: '토큰이 필요합니다.' });
     }
     console.log(token);
     // 토큰이 유효한지 확인
     jwt.verify(token, process.env.ACCESS_SECRET, async (err, decoded) => {
       if (err) {
-        return res.status(401).json({ message: '토큰이 유효하지 않습니다.' });
+        return res.status(401).json({ msg: '토큰이 유효하지 않습니다.' });
       }
 
       // 유저의 계정 정보 가져오기
@@ -27,7 +27,7 @@ router.post('/', async (req, res, next) => {
       const user = await Users.findOne({ where: { id: userId } });
 
       if (!user) {
-        return res.status(404).json({ message: '유저를 찾을 수 없습니다.' });
+        return res.status(404).json({ msg: '유저를 찾을 수 없습니다.' });
       }
 
       // 계정 정보를 사용하여 ETH Faucet에서 ETH 전송
@@ -59,11 +59,11 @@ router.post('/', async (req, res, next) => {
 
 
 
-      return res.status(200).json({ message: `ETH를 성공적으로 전송했습니다. 현재 User의 ether양: ${user.eth_amount}`, txHash });
+      return res.status(200).json({ msg: `ETH를 성공적으로 전송했습니다. 현재 User의 ether양: ${user.eth_amount}`});
     });
   } catch (err) {
     console.error(err);
-    next(err);
+    return res.status(500).json({ msg: '서버 에러' });
   }
 });
 
