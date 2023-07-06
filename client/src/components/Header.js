@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
-import { Button, Divider, Box, OutlinedInput, InputAdornment } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Box,
+  OutlinedInput,
+  InputAdornment,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import LocalAtmIcon from '@mui/icons-material/LocalAtm'; 
+import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 const headerStyle = {
@@ -38,12 +44,14 @@ const ethFaucetButtonStyle = {
   color: "#000",
   fontWeight: "bold",
   marginLeft: "50px",
+  whiteSpace: "nowrap",
 };
 
 const loginButtonStyle = {
   color: "#000",
   fontWeight: "bold",
-  paddingLeft: "8.5%"
+  paddingLeft: "8.5%",
+  whiteSpace: "nowrap",
 };
 
 export default function Header() {
@@ -64,7 +72,7 @@ export default function Header() {
           </Link>
         </Grid>
         <Grid item xs={5.6}>
-          <Box sx={{ width: "85%", borderRadius: 20, boxShadow: 1 }}>
+          <Box sx={{ width: "84.5%", borderRadius: 20, boxShadow: 1 }}>
             <OutlinedInput
               placeholder=""
               size="small"
@@ -77,13 +85,26 @@ export default function Header() {
             />
           </Box>
         </Grid>
-        <Grid item xs={3} style={{ display: "flex" }}>
+        <Grid
+          item
+          xs={2.5}
+          style={{ display: "flex", justifyContent: "flex-end" }}
+        >
           <Button
             color="secondary"
             startIcon={<LocalAtmIcon />}
             style={ethFaucetButtonStyle}
           >
-            ETH faucet
+            <span
+              style={{
+                display: "inline-block",
+                maxWidth: "100%",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              ETH faucet
+            </span>
           </Button>
           <Button
             startIcon={<AccountCircleOutlinedIcon />}

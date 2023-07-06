@@ -1,83 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Grid from "@mui/material/Unstable_Grid2";
-import { Button, Divider } from "@mui/material";
+import { Box } from "@mui/material";
+
+import PostingDetail from "../components/PostingDetail";
+import Comment from "../components/Comment";
+import CommentCreate from "../components/CommentCreate";
 
 export default function DetailPage() {
   return (
     <div>
-      <Grid
-        container
-        style={{ margin: "0 4rem", padding: "1rem", alignItems: "center" }}
-      >
-        <Grid xs={3}>
-        </Grid>
-        <Grid xs={6}>
-          <div className="post-info">
-            <img src="" alt="user_img" />
-            <div>name</div>
-            <div>number</div>
-            <Button>
-              <Link to="/">List</Link>
-            </Button>
-          </div>
-          <div className="post-content">content</div>
-          <div className="post-data">
-            <div>title</div>
-            <div>creation date</div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              margin: "2rem 0 0 0",
-            }}
-          >
-            <div>
-              <img src="" alt="user_img" />
-              <div>name</div>
-            </div>
-            <div style={{ padding: "1rem" }}>
-              this is where comments will be shown
-            </div>
-          </div>
-          <Divider variant="middle" style={{ margin: "0 2rem 0 0" }} />
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              margin: "2rem 0 0 0",
-            }}
-          >
-            <div>
-              <img src="" alt="user_img" />
-              <div>name</div>
-            </div>
-            <div style={{ padding: "1rem" }}>
-              this is where comments will be shown
-            </div>
-          </div>
-          <Divider variant="middle" style={{ margin: "0 2rem 0 0" }} />
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              margin: "2rem 0 0 0",
-            }}
-          >
-            <div>
-              <img src="" alt="user_img" />
-              <div>name</div>
-            </div>
-            <div style={{ padding: "1rem" }}>
-              this is where comments will be shown
-            </div>
-          </div>
-          <Divider variant="middle" style={{ margin: "0 2rem 0 0" }} />
-        </Grid>
-        <Grid xs={3}>
-        </Grid>
-      </Grid>
+      <Box display="flex" flexDirection="column" alignItems="center">
+        <PostingDetail />
+        <Comment />
+        <Comment />
+        <CommentCreate />
+      </Box>
     </div>
   );
 }

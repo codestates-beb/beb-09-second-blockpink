@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
@@ -9,66 +9,126 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
 
 const sidebarStyle = {
-  position: 'fixed',
+  position: "fixed",
   left: 0,
   top: 0,
-  width: '15%',
-  height: '100%',
-  backgroundColor: '#fff',
-  padding: '1.5%',
-  paddingTop: '5.5%',
-  overflowY: 'auto',
-  border: '1px solid #d3d3d3',
-  boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.2)',
+  width: "15%",
+  height: "100%",
+  backgroundColor: "#fff",
+  padding: "1.5%",
+  paddingTop: "5.5%",
+  overflowY: "auto",
+  border: "1px solid #d3d3d3",
+  boxShadow: "2px 2px 5px rgba(0, 0, 0, 0.1)",
 };
 
 const linkStyle = {
-  display: 'block',
-  paddingTop: '30px',
-  textDecoration: 'none',
+  display: "block",
+  paddingTop: "30px",
+  textDecoration: "none",
 };
 
 const textStyle = {
-  color: 'black',
-  fontSize: '15px',
-  fontWeight: 'bold',
+  color: "black",
+  fontSize: "15px",
+  fontWeight: "bold",
+};
+
+const activeLinkStyle = {
+  color: "#ff006c",
 };
 
 const searchStyle = {
-  marginTop: '20%',
+  marginTop: "20%",
 };
 
 const inputStyle = {
-  borderColor: 'transparent',
-  boxShadow: '0px 2px 5px 0px rgba(0, 0, 0, 0.2)',
-  borderRadius: '15px',
+  borderColor: "transparent",
+  boxShadow: "0px 2px 5px 0px rgba(0, 0, 0, 0.2)",
+  borderRadius: "15px",
 };
 
 export default function Sidebar() {
+  const location = useLocation();
+
+  const isActiveLink = (pathname) => {
+    return location.pathname === pathname;
+  };
+
   return (
     <div style={sidebarStyle}>
       <div style={linkStyle}>
-        <Button color="secondary" component={Link} to="/" startIcon={<HomeIcon />} style={textStyle}>
+        <Button
+          color="secondary"
+          component={Link}
+          to="/"
+          startIcon={<HomeIcon />}
+          style={
+            isActiveLink("/")
+              ? { ...textStyle, ...activeLinkStyle }
+              : textStyle
+          }
+        >
           Home
         </Button>
       </div>
       <div style={linkStyle}>
-        <Button color="secondary" component={Link} to="/mypage" startIcon={<PersonIcon />} style={textStyle}>
+        <Button
+          color="secondary"
+          component={Link}
+          to="/mypage"
+          startIcon={<PersonIcon />}
+          style={
+            isActiveLink("/mypage")
+              ? { ...textStyle, ...activeLinkStyle }
+              : textStyle
+          }
+        >
           Profile
         </Button>
       </div>
       <div style={linkStyle}>
-        <Button color="secondary" component={Link} to="/" startIcon={<NotificationsIcon />} style={textStyle}>
+        <Button
+          color="secondary"
+          component={Link}
+          to="/notifications"
+          startIcon={<NotificationsIcon />}
+          style={
+            isActiveLink("/notifications")
+              ? { ...textStyle, ...activeLinkStyle }
+              : textStyle
+          }
+        >
           Notifications
         </Button>
       </div>
       <div style={linkStyle}>
-        <Button color="secondary" component={Link} to="/mint" startIcon={<MonetizationOnIcon />} style={textStyle}>
+        <Button
+          color="secondary"
+          component={Link}
+          to="/mint"
+          startIcon={<MonetizationOnIcon />}
+          style={
+            isActiveLink("/mint")
+              ? { ...textStyle, ...activeLinkStyle }
+              : textStyle
+          }
+        >
           NFT Market
         </Button>
       </div>
       <div style={linkStyle}>
-        <Button color="secondary" component={Link} to="/write" startIcon={<PostAddIcon />} style={textStyle}>
+        <Button
+          color="secondary"
+          component={Link}
+          to="/write"
+          startIcon={<PostAddIcon />}
+          style={
+            isActiveLink("/write")
+              ? { ...textStyle, ...activeLinkStyle }
+              : textStyle
+          }
+        >
           Post
         </Button>
       </div>

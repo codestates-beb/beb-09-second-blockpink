@@ -14,6 +14,9 @@ import NotFound from "./pages/NotFound";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 
+// api
+import { getPosting } from "./api/get-posting.js";
+
 export default function App() {
   return (
     <Router>

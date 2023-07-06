@@ -14,11 +14,13 @@ const createAccount = async () => {
 
 
 
-  if (ServerAccountExists) { // 이미 존재한다면
+  if (ServerAccountExists) {
+    // 이미 존재한다면
     return {
       message: "서버 계정이 이미 존재합니다",
     };
-  } else { // 존재하지 않는다면
+  } else {
+    // 존재하지 않는다면
     // ethers.js를 사용하여 새 지갑을 생성합니다.
     // JsonRpcProvider를 사용하여 로컬 테스트 네트워크에 연결합니다.(anvil)
 
@@ -70,18 +72,5 @@ router.post("/", async (req, res) => {
     res.status(400).json({ message: "서버 계정 생성에 실패했습니다" });
   }
 });
-
-// router.post("/sendToken", async (req, res) => {
-//   try {
-//     const result = await transferTokenToAddress();
-//     res.status(200).json(result);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(400).json({ message: "컨트랙트 배포 및 서버 계정에 토큰 전송을 실패했습니다." });
-//   }
-// });
-
-
-
 
 module.exports = router;
