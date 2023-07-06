@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 
 import CreatePosts from "../components/CreatePosts";
 
-export default function CreatePostsPage() {
+export default function WritePage() {
   return (
     <Container>
       <CreatePosts />
