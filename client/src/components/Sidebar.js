@@ -3,10 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import PostAddIcon from "@mui/icons-material/PostAdd";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import SearchIcon from "@mui/icons-material/Search";
+import CropOriginalIcon from '@mui/icons-material/CropOriginal';
+import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
+import { styled } from '@mui/system';
 
 const sidebarStyle = {
   position: "fixed",
@@ -48,6 +49,13 @@ const inputStyle = {
   borderRadius: "15px",
 };
 
+const MyButton = styled(Button)({
+  '&:hover': {
+    color: '#ff006c !important',
+    backgroundColor: 'transparent',
+  }
+});
+
 export default function Sidebar() {
   const location = useLocation();
 
@@ -58,7 +66,7 @@ export default function Sidebar() {
   return (
     <div style={sidebarStyle}>
       <div style={linkStyle}>
-        <Button
+        <MyButton
           color="secondary"
           component={Link}
           to="/"
@@ -70,10 +78,10 @@ export default function Sidebar() {
           }
         >
           Home
-        </Button>
+        </MyButton>
       </div>
       <div style={linkStyle}>
-        <Button
+        <MyButton
           color="secondary"
           component={Link}
           to="/mypage"
@@ -85,29 +93,29 @@ export default function Sidebar() {
           }
         >
           Profile
-        </Button>
+        </MyButton>
       </div>
       <div style={linkStyle}>
-        <Button
+        <MyButton
           color="secondary"
           component={Link}
-          to="/notifications"
-          startIcon={<NotificationsIcon />}
+          to="/detail"
+          startIcon={<CropOriginalIcon />}
           style={
-            isActiveLink("/notifications")
+            isActiveLink("/detail")
               ? { ...textStyle, ...activeLinkStyle }
               : textStyle
           }
         >
-          Notifications
-        </Button>
+          See Detail
+        </MyButton>
       </div>
       <div style={linkStyle}>
-        <Button
+        <MyButton
           color="secondary"
           component={Link}
           to="/mint"
-          startIcon={<MonetizationOnIcon />}
+          startIcon={<StorefrontOutlinedIcon />}
           style={
             isActiveLink("/mint")
               ? { ...textStyle, ...activeLinkStyle }
@@ -115,10 +123,10 @@ export default function Sidebar() {
           }
         >
           NFT Market
-        </Button>
+        </MyButton>
       </div>
       <div style={linkStyle}>
-        <Button
+        <MyButton
           color="secondary"
           component={Link}
           to="/write"
@@ -130,7 +138,7 @@ export default function Sidebar() {
           }
         >
           Post
-        </Button>
+        </MyButton>
       </div>
       <div style={searchStyle}>
         <TextField
