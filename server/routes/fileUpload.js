@@ -7,8 +7,9 @@ require("dotenv").config();
 const pinataSDK = require("@pinata/sdk");
 const pinata = new pinataSDK({ pinataJWTKey: process.env.JWT });
 
+// 스토리지 & 저장 위치 & 저장 파일 이름 설정
 const storage = multer.diskStorage({
-  destiation: function (req, file, cb) {
+  destination: function (req, file, cb) {
     cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
@@ -16,19 +17,18 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage,
+});
 
+// 파일 업로드 및 라우팅
 router.post("/", upload.single("file"), (req, res, next) => {
   const readableStreamForFile = fs.createReadStream(
     "./uploads/" + req.file.filename
   );
   const options = {
     pinataMetadata: {
-      name: SweeterNFT,
-      keyvalues: {
-        customKey: "customValue",
-        customKey2: "customValue2",
-      },
+      name: "SweeterNFT",
     },
     pinataOptions: {
       cidVersion: 0,
@@ -37,12 +37,16 @@ router.post("/", upload.single("file"), (req, res, next) => {
   pinata
     .pinFileToIPFS(readableStreamForFile, options)
     .then((result) => {
-      //handle results here
       console.log(result);
+      res.status(200).json({
+        message: "pinning image to ipfs",
+        ipfsHash: result.IpfsHash,
+      });
     })
     .catch((err) => {
       //handle error here
       console.log(err);
+      res.status(400).send("improper request");
     });
 });
 
