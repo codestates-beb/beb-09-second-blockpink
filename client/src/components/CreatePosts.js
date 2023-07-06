@@ -62,7 +62,7 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function WritePage() {
+export default function CreatePosts() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const theme = useTheme();

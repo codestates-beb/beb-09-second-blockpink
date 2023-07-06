@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import {
   Button,
@@ -36,7 +36,9 @@ const sweeterTextStyle = {
   fontSize: "26px",
   fontWeight: "800",
   marginLeft: "4%",
-  color: "#ff006c",
+  backgroundImage: "linear-gradient(to right, #ff006c, #000)",
+  WebkitBackgroundClip: "text",
+  WebkitTextFillColor: "transparent",
   fontFamily: "Nanum Myeongjo, Arial, sans-serif",
 };
 
@@ -47,14 +49,58 @@ const ethFaucetButtonStyle = {
   whiteSpace: "nowrap",
 };
 
+const ethFaucetButtonHoverStyle = {
+  ...ethFaucetButtonStyle,
+  backgroundColor: "#fff",
+  color: "#ff006c",
+};
+
 const loginButtonStyle = {
   color: "#000",
   fontWeight: "bold",
-  paddingLeft: "8.5%",
+  paddingLeft: "20%",
   whiteSpace: "nowrap",
+  backgroundColor: "#fff",
+};
+
+const pinkButtonStyle = {
+  color: "#ff006c",
+  fontWeight: "bold",
+  paddingLeft: "20%",
+  whiteSpace: "nowrap",
+  backgroundColor: "#fff",
 };
 
 export default function Header() {
+  const location = useLocation();
+  const [loginButtonHover, setLoginButtonHover] = useState(false);
+  const [ethFaucetButtonHover, setEthFaucetButtonHover] = useState(false);
+  const [isLoginPage, setIsLoginPage] = useState(false);
+
+  useEffect(() => {
+    setIsLoginPage(location.pathname === "/login");
+  }, [location]);
+
+  const handleLoginButtonMouseEnter = () => {
+    setLoginButtonHover(true);
+  };
+
+  const handleLoginButtonMouseLeave = () => {
+    setLoginButtonHover(false);
+  };
+
+  const handleEthFaucetButtonMouseEnter = () => {
+    setEthFaucetButtonHover(true);
+  };
+
+  const handleEthFaucetButtonMouseLeave = () => {
+    setEthFaucetButtonHover(false);
+  };
+
+  useEffect(() => {
+    setIsLoginPage(location.pathname === "/login");
+  }, [location]);
+
   return (
     <div style={headerStyle}>
       <Grid
@@ -65,10 +111,19 @@ export default function Header() {
           <Link to="/" style={sweeterContainerStyle}>
             <img
               src={process.env.PUBLIC_URL + "/logo.png"}
-              alt="Logo"
-              style={logoStyle}
+             alt="Logo"
+              style={{
+                ...logoStyle,
+              }}
             />
-            <span style={sweeterTextStyle}>Sweeter</span>
+            <span
+              style={{
+                ...sweeterTextStyle,
+                color: "#ff006c",
+              }}
+            >
+              Sweeter
+            </span>
           </Link>
         </Grid>
         <Grid item xs={5.6}>
@@ -93,7 +148,9 @@ export default function Header() {
           <Button
             color="secondary"
             startIcon={<LocalAtmIcon />}
-            style={ethFaucetButtonStyle}
+            style={ethFaucetButtonHover ? ethFaucetButtonHoverStyle : ethFaucetButtonStyle}
+            onMouseEnter={handleEthFaucetButtonMouseEnter}
+            onMouseLeave={handleEthFaucetButtonMouseLeave}
           >
             <span
               style={{
@@ -106,12 +163,17 @@ export default function Header() {
               ETH faucet
             </span>
           </Button>
-          <Button
-            startIcon={<AccountCircleOutlinedIcon />}
-            style={loginButtonStyle}
-          >
-            Login
-          </Button>
+
+          <Link to="/login">
+            <Button
+              startIcon={<AccountCircleOutlinedIcon />}
+              style={isLoginPage ? pinkButtonStyle : loginButtonStyle}
+              onMouseEnter={handleLoginButtonMouseEnter}
+              onMouseLeave={handleLoginButtonMouseLeave}
+            >
+              Login
+            </Button>
+          </Link>
         </Grid>
       </Grid>
       <Divider />
