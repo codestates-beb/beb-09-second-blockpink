@@ -9,7 +9,9 @@ contract MyScript is Script {
     function setUp() public {}
 
     function run() public {
-        uint256 deployerPrivateKey = vm.envUint("SERVER_PRIVATE_KEY");
+        // uint256 deployerPrivateKey = vm.envUint("SERVER_PRIVATE_KEY");
+        uint256 deployerPrivateKey = 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80;
+
         vm.startBroadcast(deployerPrivateKey);
 
         // ERC20 토큰 및 NFTLootBox 컨트랙트 배포

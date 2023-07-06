@@ -17,7 +17,7 @@ const createAccount = async () => {
   if (ServerAccountExists) {
     // 이미 존재한다면
     return {
-      message: "서버 계정이 이미 존재합니다",
+      msg: "서버 계정이 이미 존재합니다",
     };
   } else {
     // 존재하지 않는다면
@@ -47,16 +47,16 @@ const createAccount = async () => {
 
     const serverAccount = await ServerAccount.create({
 
-      address: serverAddress,           //서버 계정 주소    (anvil)
+      address: serverAddress,          //서버 계정 주소    (anvil)
       privatekey: serverPrivateKey,    //서버 계정 개인키
-      eth_amount: ethBalance,  //서버 계정 잔고
-      token_amount: tokenBalance         //서버 계정 토큰 수량
+      eth_amount: ethBalance,          //서버 계정 잔고
+      token_amount: tokenBalance       //서버 계정 토큰 수량
 
     });
 
 
     return {
-      message: "서버 계정이 생성되었습니다",
+      msg: "서버 계정이 생성되었습니다",
       data: serverAccount,
     };
   }
@@ -69,7 +69,7 @@ router.post("/", async (req, res) => {
     res.status(200).json(result);
   } catch (err) {
     console.log(err);
-    res.status(400).json({ message: "서버 계정 생성에 실패했습니다" });
+    res.status(400).json({ msg: "서버 계정 생성에 실패했습니다" });
   }
 });
 
