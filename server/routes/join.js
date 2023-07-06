@@ -7,7 +7,7 @@ const { Users } = require("../models");
 router.post("/", (req, res, next) => {
 
     // 사용자의 정보를 요청의 본문(body)에서 추출합니다.
-    const { email, password, nickName } = req.body;
+    const { email, password, nickname } = req.body;
 
     // 새로운 지갑을 생성합니다.
     const wallet = ethers.Wallet.createRandom();
@@ -24,7 +24,7 @@ router.post("/", (req, res, next) => {
     Users.create({
         email: email,
         password: password,
-        nickname: nickName,
+        nickname: nickname,
         address: userAddress,
         privatekey: privateKey,
         token_amount: 0,
@@ -32,12 +32,14 @@ router.post("/", (req, res, next) => {
     })
         .then((user) => {
             // 생성된 사용자 정보를 응답합니다.
-            res.status(201).json(user);
+            const msg = "회원가입이 완료되었습니다.";
+            res.status(201).json({ msg, user });
+
         })
         .catch((err) => {
             // 에러가 발생한 경우, 에러를 처리합니다.
             console.error(err);
-            next(err);
+            res.status(500).json({ error: "회원가입에 실패했습니다." });
         });
 });
 module.exports = router;
