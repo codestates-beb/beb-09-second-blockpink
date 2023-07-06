@@ -17,11 +17,8 @@
     "dotenv": "^16.3.1",
     "ethers": "5.4",
     "express": "^4.18.2",
-<<<<<<< HEAD
     "multer": "^1.4.5-lts.1",
-=======
     "jsonwebtoken": "^9.0.0",
->>>>>>> 3d258967a0665742b741ff27b18e13ca2c8db3a5
     "mysql2": "^3.4.3",
     "nodemon": "^2.0.22",
     "sequelize": "^6.32.1",

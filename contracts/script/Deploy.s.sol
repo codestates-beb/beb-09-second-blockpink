@@ -18,12 +18,12 @@ contract MyScript is Script {
 
         // NFTLootBox 컨트랙트의 setToken 함수 실행하며 앞서 배포한 ERC20 주소를 인자로 넘겨줌
         // 여기서 사용한 0Xf39... 계정 주소는 서버 계정 주소(Anvil 첫번째 계정)이다.
-        uint64 nonce = vm.getNonce(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266);
-        address swtAddr = computeCreateAddress(
-            0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266,
-            nonce
-        );
-        nftLootBox.setToken(swtAddr);
+        // uint64 nonce = vm.getNonce(0xAdeb833eee668e50761B4BC8b3Ef476Dc2C86946);
+        // address swtAddr = computeCreateAddress(
+        //     0xAdeb833eee668e50761B4BC8b3Ef476Dc2C86946,
+        //     nonce
+        // );
+        // nftLootBox.setToken(swtAddr);
 
         vm.stopBroadcast();
     }

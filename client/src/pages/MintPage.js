@@ -97,11 +97,11 @@ export default function Create() {
   console.log("nftItem", nftItem);
   console.log("url", nftItemUrl);
 
-  const mintNFT = async (tokenURI, tokenId) => {
+  const mintNFT = async (tokenURI) => {
     const result = await axios({
       url: "http://localhost:8080/nft/mint",
       method: "post",
-      data: { tokenURI, tokenId },
+      data: { tokenURI },
     });
     console.log(result.data);
     setIsModalOpen(true);
@@ -152,7 +152,7 @@ export default function Create() {
           console.log(res.data);
           // Here you can call the mintToken function and pass the metadata url.
           let tokenURI = `https://ipfs.io/ipfs/${res.data.ipfsHash}`; // assuming this is the format of the response
-          mintNFT(tokenURI, tokenId);
+          mintNFT(tokenURI);
           setTokenId(tokenId + 1); // 토큰이 발행된 후 토큰 ID 증가
         });
       } catch (error) {
