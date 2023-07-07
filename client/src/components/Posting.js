@@ -58,16 +58,22 @@ export default function Posting(props) {
 
   const dummyData = {
     title: "블록핑크",
+    subtitle: "7시간 전",
     date: "2023년 7월 3일",
     content:
       "좋은 책과 읽는 것은 과거 몇 세기의 가장 훌륭한 사람들과 이야기를 나누는 것과 같다. -데카르트-",
     details:
-      "돌을 놓고 본다 초면인 돌을 사흘 걸러 한 번 같은 말을 낮게 반복해 돌 속에 넣어본다 처음으로 오늘에 웃으시네 소금 같은 싸락눈도 흩날리게 조금 돌 속에 넣어본다. 돌을 놓고 본다 초면인 돌을 사흘 걸러 한 번 같은 말을 낮게 반복해 돌 속에 넣어본다 처음으로 오늘에 웃으시네 소금 같은 싸락눈도 흩날리게 조금 돌 속에 넣어본다.",
+      "돌을 놓고 본다 초면인 돌을 사흘 걸러 한 번 같은 말을 낮게 반복해 돌 속에 넣어본다 처음으로 오늘에 웃으시네 소금 같은 싸락눈도 흩날리게 조금 돌 속에 넣어본다. 돌을 놓고 본다 초면인 돌을 사흘걸러 한 번 같은 말을 낮게 반복해 돌 속에 넣어본다 처음으로 오늘에 웃으시네 소금같은 싸락눈도 흩날리게 조금 돌 속에 넣어본다.",
   };
 
   return (
     <Card
-      sx={{ width: "50%", height: { xs: "18%", sm: "13%", md: "9%", lg: "7.5%", xl: "5%" }, marginTop: { xs: "18%", sm: "13%", md: "9%", lg: "7.5%", xl: "5%" }, marginBottom: "2%" }}
+      sx={{
+        width: "50%",
+        height: { xs: "18%", sm: "13%", md: "9%", lg: "7.5%", xl: "5%" },
+        marginTop: { xs: "18%", sm: "13%", md: "9%", lg: "7.5%", xl: "5%" },
+        marginBottom: "2%",
+      }}
     >
       <CardHeader
         avatar={<Avatar alt="Remy Sharp" src={image} />}
@@ -77,9 +83,14 @@ export default function Posting(props) {
           </IconButton>
         }
         title={
-          <Typography fontSize={15} component="div" style={{ fontWeight: 800 }}>
-            {dummyData.title}
-          </Typography>
+          <div style={{ display: "flex" }}>
+            <Typography fontSize={15} component="div" style={{ fontWeight: 800 }}>
+              {dummyData.title}
+            </Typography>
+            <Typography fontSize={12} component="div" style={{ fontWeight: 400, marginTop: '0.32%', marginLeft: '1.5%', color: 'gray'}}>
+              {dummyData.subtitle}
+            </Typography>
+          </div>
         }
         subheader={
           <Typography variant="body2" component="div" style={{ fontWeight: "500" }}>
