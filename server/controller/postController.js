@@ -19,6 +19,7 @@ module.exports = {
       res.status(500).send("internal server error");
     }
   },
+
   getPostById: async (req, res) => {
     try {
       const postId = req.params.id;
@@ -38,6 +39,7 @@ module.exports = {
       res.status(500).send("internal server error");
     }
   },
+
   registerPostWithTokenReward: async (req, res) => {
     const SWT_REWARD = BigInt(200e18);
 

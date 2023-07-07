@@ -27,9 +27,9 @@ app.use("/auth", authRouter);
 app.use("/eth-faucet", ethFaucetRouter);
 app.use("/join", joinRouter);
 app.use("/nft", nftRouter);
-app.use("/page", postsRouter);
+app.use("/post", postsRouter);
 app.use("/send-token", sendTokenRouter);
-app.use("/users", usersRouter);
+app.use("/user", usersRouter);
 app.use("/", serverRouter);
 app.use("/upload", fileUploadRouter);
 
