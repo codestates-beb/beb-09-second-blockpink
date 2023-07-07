@@ -1,20 +1,21 @@
 import React from "react";
+import Banner from '../components/MyPage/Banner';
+import ProfileImg from "../components/MyPage/ProfileImg";
+import Item from '../components/MyPage/Item';
+import UserInfo from "../components/MyPage/UserInfo";
 
-export default function MyPage() {
+import styles from '../assets/MyPage.module.css';
+
+const MyPage = () => {
+
   return (
-    <div>
-    <div>
-            {/* <Banner/>
-            <ProfileImg/>
-            <UserInfo/>
-            <Item/>
-            <Posts></Posts>
-            <div>
-              <UserBBanner/>
-              <UserBInfo/>
-              <button>Send Tokens</button>
-            </div> */}
-    </div>
+    <div className={styles.myPageContainer}>
+      <Banner/>
+      <ProfileImg/>
+      <UserInfo/>
+      <Item/>
     </div>
   );
 };
+
+export default MyPage;
