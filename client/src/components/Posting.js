@@ -42,7 +42,9 @@ export default function Posting(props) {
       .then((data) => setViewCount(data.count))
       .catch((error) => console.error(error));
 
-    fetch("https://api.unsplash.com/photos/random?client_id=GoPF7PTv9CUtpw-gJRWeEEY9mw55igwhUXI2rDiDlpg")
+    fetch(
+      "https://api.unsplash.com/photos/random?client_id=GoPF7PTv9CUtpw-gJRWeEEY9mw55igwhUXI2rDiDlpg"
+    )
       .then((response) => response.json())
       .then((data) => setImage(data.urls.regular))
       .catch((error) => console.error(error));
@@ -84,16 +86,33 @@ export default function Posting(props) {
         }
         title={
           <div style={{ display: "flex" }}>
-            <Typography fontSize={15} component="div" style={{ fontWeight: 800 }}>
+            <Typography
+              fontSize={15}
+              component="div"
+              style={{ fontWeight: 800 }}
+            >
               {dummyData.title}
             </Typography>
-            <Typography fontSize={12} component="div" style={{ fontWeight: 400, marginTop: '0.32%', marginLeft: '1.5%', color: 'gray'}}>
+            <Typography
+              fontSize={12}
+              component="div"
+              style={{
+                fontWeight: 400,
+                marginTop: "0.32%",
+                marginLeft: "1.5%",
+                color: "gray",
+              }}
+            >
               {dummyData.subtitle}
             </Typography>
           </div>
         }
         subheader={
-          <Typography variant="body2" component="div" style={{ fontWeight: "500" }}>
+          <Typography
+            variant="body2"
+            component="div"
+            style={{ fontWeight: "500" }}
+          >
             {dummyData.date}
           </Typography>
         }
@@ -102,7 +121,11 @@ export default function Posting(props) {
         <CardMedia component="img" height="450" src={image} alt="image" />
       </Link>
       <CardContent>
-        <Typography variant="body2" color="text.primary" style={{ fontWeight: "500" }}>
+        <Typography
+          variant="body2"
+          color="text.primary"
+          style={{ fontWeight: "500" }}
+        >
           {dummyData.content}
         </Typography>
       </CardContent>
@@ -131,9 +154,19 @@ export default function Posting(props) {
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
-      <Collapse in={expanded[0]} timeout="auto" unmountOnExit sx={{ width: expandedWidth }}>
+      <Collapse
+        in={expanded[0]}
+        timeout="auto"
+        unmountOnExit
+        sx={{ width: expandedWidth }}
+      >
         <CardContent>
-          <Typography paragraph variant="body2" color="text.primary" style={{ fontWeight: "500" }}>
+          <Typography
+            paragraph
+            variant="body2"
+            color="text.primary"
+            style={{ fontWeight: "500" }}
+          >
             {dummyData.details}
           </Typography>
         </CardContent>
