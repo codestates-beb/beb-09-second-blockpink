@@ -69,11 +69,20 @@ export default function Posting(props) {
           </IconButton>
         }
         title={
-          <Typography variant="h8" component="div" style={{ fontWeight: "bold", fontSize: "15px", marginLeft: "-5px" }}>
-            블록핑크
-          </Typography>
+          <span>
+            <Typography variant="h8" component="div" style={{ fontWeight: "bold", fontSize: "15px", marginLeft: "-5px", display: "inline" }}>
+              블록핑크
+            </Typography>
+            <Typography style={{ fontSize: '12px', fontWeight: 400, position: 'relative', top: '-1.5px', marginLeft: '1.5%', color: 'gray', display: "inline" }}>
+              7시간 전
+            </Typography>
+          </span>
         }
-        subheader={<Typography style={{ fontSize: "14px", fontWeight: "500", marginLeft: "-5px" }}>2023년 7월 3일</Typography>}
+        subheader={
+          <Typography style={{ fontSize: "14px", fontWeight: "500", marginLeft: "-5px" }}>
+            2023년 7월 3일
+         </Typography>
+        }
       />
 
       <Typography
@@ -133,6 +142,6 @@ export default function Posting(props) {
           </Typography>
         </CardContent>
       </Collapse>
-    </Card>
+   </Card>
   );
 }
