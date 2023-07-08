@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -15,42 +15,50 @@ import NotFound from "./pages/NotFound";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 
+import { UserContext } from "./components/Context/UserContext";
+
 // api
 import { getPosting } from "./api/get-posting.js";
+import { getUserInfo } from "./api/get-userinfo";
 
 export default function App() {
-  const [login, setLogin] = useState({
+  const [user, setUser] = useState({
     isLogin: false,
     accessToken: "",
+    address: "",
+    token_amount: "",
+    eth_amount: "",
+    nfts: [],
+    posts: [],
   });
 
-  const loginHandler = (token) => {
-    setLogin({
-      isLogin: true,
-      accessToken: token,
-    });
-  };
+  const value = useMemo(
+    () => ({
+      user,
+      setUser,
+    }),
+    [user, setUser]
+  );
 
   return (
-    <Router>
-      <Header />
-      <Sidebar />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/write" element={<WritePage />} />
-        <Route path="/detail" element={<DetailPage />}>
-          <Route path=":id" />
-        </Route>
-        <Route path="/mint" element={<MintPage />}></Route>
-        <Route path="/signup" element={<SignUpPage />}></Route>
-        <Route
-          path="/login"
-          element={<LoginPage loginHandler={loginHandler} />}
-        ></Route>
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
-      <Footer />
-    </Router>
+    <UserContext.Provider value={value}>
+      <Router>
+        <Header />
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/write" element={<WritePage />} />
+          <Route path="/detail" element={<DetailPage />}>
+            <Route path=":id" />
+          </Route>
+          <Route path="/mint" element={<MintPage />}></Route>
+          <Route path="/signup" element={<SignUpPage />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+        <Footer />
+      </Router>
+    </UserContext.Provider>
   );
 }

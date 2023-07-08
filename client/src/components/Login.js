@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -8,8 +8,11 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 
 import { postLogin } from "../api/post-login";
+import { UserContext } from "./Context/UserContext";
 
-export default function Login({ loginHandler }) {
+export default function Login() {
+  const { user, setUser } = useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
@@ -27,7 +30,7 @@ export default function Login({ loginHandler }) {
     const result = await postLogin(email, password);
 
     if (result.msg === "로그인에 성공했습니다.") {
-      loginHandler(result.token);
+      setUser({ isLogin: true, accessToken: result.token });
       alert("로그인 성공");
       navigate("/mypage");
     } else {
@@ -74,7 +77,7 @@ export default function Login({ loginHandler }) {
         alignItems: "center",
         justifyContent: "flex-start",
         height: "100vh",
-        paddingTop: "12vh",
+        paddingTop: "16vh",
       }}
     >
       <Box
@@ -307,12 +310,12 @@ export default function Login({ loginHandler }) {
           onMouseEnter={() => handleTextHover("Sign Up")}
           onMouseLeave={handleTextLeave}
         >
-          <a
-            href="/signup"
+          <Link
+            to="/signup"
             style={{ color: hoveredText === "Sign Up" ? "#d9005c" : "#ff006c" }}
           >
             Sign Up
-          </a>
+          </Link>
         </span>
       </Box>
       <span style={{ color: "#bbb", fontSize: "12px", marginTop: "3%" }}>

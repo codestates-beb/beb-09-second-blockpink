@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -99,7 +99,7 @@ export default function Signup() {
         alignItems: "center",
         justifyContent: "flex-start",
         height: "100vh",
-        paddingTop: "12vh",
+        paddingTop: "16vh",
       }}
     >
       <Box
@@ -319,9 +319,9 @@ export default function Signup() {
         onMouseEnter={() => handleTextHover("Find ID")}
         onMouseLeave={handleTextLeave}
       >
-        <a href="/login" style={{ textDecoration: "none", color: "inherit" }}>
+        <Link to="/login" style={{ textDecoration: "none", color: "inherit" }}>
           Login
-        </a>
+        </Link>
       </span>
       {errors.isChecked && (
         <span style={{ color: "red", marginTop: "1rem" }}>

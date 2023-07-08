@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import {
@@ -11,6 +11,9 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+
+import { ethFaucet } from "../api/post-eth-faucet";
+import { UserContext } from "./Context/UserContext";
 
 const headerStyle = {
   position: "fixed",
@@ -72,6 +75,8 @@ const pinkButtonStyle = {
 };
 
 export default function Header() {
+  const { user, setUser } = useContext(UserContext);
+
   const location = useLocation();
   const [loginButtonHover, setLoginButtonHover] = useState(false);
   const [ethFaucetButtonHover, setEthFaucetButtonHover] = useState(false);
@@ -97,6 +102,12 @@ export default function Header() {
     setEthFaucetButtonHover(false);
   };
 
+  const handleEthFaucetClicked = async () => {
+    console.log(user.accessToken);
+    const result = await ethFaucet(user.accessToken);
+    alert(result.msg);
+  };
+
   useEffect(() => {
     setIsLoginPage(location.pathname === "/login");
   }, [location]);
@@ -111,7 +122,7 @@ export default function Header() {
           <Link to="/" style={sweeterContainerStyle}>
             <img
               src={process.env.PUBLIC_URL + "/logo.png"}
-             alt="Logo"
+              alt="Logo"
               style={{
                 ...logoStyle,
               }}
@@ -148,9 +159,14 @@ export default function Header() {
           <Button
             color="secondary"
             startIcon={<LocalAtmIcon />}
-            style={ethFaucetButtonHover ? ethFaucetButtonHoverStyle : ethFaucetButtonStyle}
+            style={
+              ethFaucetButtonHover
+                ? ethFaucetButtonHoverStyle
+                : ethFaucetButtonStyle
+            }
             onMouseEnter={handleEthFaucetButtonMouseEnter}
             onMouseLeave={handleEthFaucetButtonMouseLeave}
+            onClick={handleEthFaucetClicked}
           >
             <span
               style={{
@@ -164,16 +180,29 @@ export default function Header() {
             </span>
           </Button>
 
-          <Link to="/login">
-            <Button
-              startIcon={<AccountCircleOutlinedIcon />}
-              style={isLoginPage ? pinkButtonStyle : loginButtonStyle}
-              onMouseEnter={handleLoginButtonMouseEnter}
-              onMouseLeave={handleLoginButtonMouseLeave}
-            >
-              Login
-            </Button>
-          </Link>
+          {user.isLogin ? (
+            <Link to="/mypage">
+              <Button
+                startIcon={<AccountCircleOutlinedIcon />}
+                style={isLoginPage ? pinkButtonStyle : loginButtonStyle}
+                onMouseEnter={handleLoginButtonMouseEnter}
+                onMouseLeave={handleLoginButtonMouseLeave}
+              >
+                User
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Button
+                startIcon={<AccountCircleOutlinedIcon />}
+                style={isLoginPage ? pinkButtonStyle : loginButtonStyle}
+                onMouseEnter={handleLoginButtonMouseEnter}
+                onMouseLeave={handleLoginButtonMouseLeave}
+              >
+                Login
+              </Button>
+            </Link>
+          )}
         </Grid>
       </Grid>
       <Divider />
