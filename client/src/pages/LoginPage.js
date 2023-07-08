@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 
 import Login from "../components/Login";
 
-export default function LoginPage() {
+export default function LoginPage({ loginHandler }) {
   return (
     <div>
-        <Login />
+      {console.log(typeof loginHandler)}
+      <Login loginHandler={loginHandler} />
     </div>
   );
 }

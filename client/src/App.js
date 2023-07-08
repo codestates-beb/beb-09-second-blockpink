@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -18,6 +19,18 @@ import LoginPage from "./pages/LoginPage";
 import { getPosting } from "./api/get-posting.js";
 
 export default function App() {
+  const [login, setLogin] = useState({
+    isLogin: false,
+    accessToken: "",
+  });
+
+  const loginHandler = (token) => {
+    setLogin({
+      isLogin: true,
+      accessToken: token,
+    });
+  };
+
   return (
     <Router>
       <Header />
@@ -31,7 +44,10 @@ export default function App() {
         </Route>
         <Route path="/mint" element={<MintPage />}></Route>
         <Route path="/signup" element={<SignUpPage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
+        <Route
+          path="/login"
+          element={<LoginPage loginHandler={loginHandler} />}
+        ></Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer />

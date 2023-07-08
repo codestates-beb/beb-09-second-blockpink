@@ -1,10 +1,8 @@
-//특정 유저 정보를 가져오는 API 
+// 특정 유저 정보를 가져오는 API
 const express = require("express");
 const router = express.Router();
+const { getUserById } = require("../controller/usersController");
 
-// 로그인 미들웨어
-router.post("/", (req, res, next) => {
-
-});
+router.get("/:id", getUserById);
 
 module.exports = router;

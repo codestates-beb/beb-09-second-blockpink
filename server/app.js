@@ -25,7 +25,7 @@ app.use("/join", joinRouter);
 app.use("/nft", nftRouter);
 app.use("/post", postsRouter);
 app.use("/send-token", sendTokenRouter);
-app.use("/users", usersRouter);
+app.use("/user", usersRouter);
 app.use("/", serverRouter);
 
 
