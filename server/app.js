@@ -12,10 +12,9 @@ const nftRouter = require("./routes/nft");
 const postsRouter = require("./routes/posts");
 const sendTokenRouter = require("./routes/sendToken");
 const usersRouter = require("./routes/users");
-const serverRouter = require("./routes/init")
+const serverRouter = require("./routes/init");
+const fileUploadRouter = require("./routes/fileUpload");
 //
-
-
 
 app.use(cors());
 app.use(express.json());
@@ -27,7 +26,7 @@ app.use("/post", postsRouter);
 app.use("/send-token", sendTokenRouter);
 app.use("/user", usersRouter);
 app.use("/", serverRouter);
-
+app.use("/upload", fileUploadRouter);
 
 db.sequelize
   .sync({})

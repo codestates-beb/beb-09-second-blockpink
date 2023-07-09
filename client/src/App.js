@@ -25,6 +25,7 @@ export default function App() {
   const [user, setUser] = useState({
     isLogin: false,
     accessToken: "",
+    nickname: "",
     address: "",
     token_amount: "",
     eth_amount: "",

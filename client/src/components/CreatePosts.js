@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -23,6 +23,11 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { styled } from "@mui/system";
+
+import { UserContext } from "./Context/UserContext";
+
+// api
+import { registerPosting } from "../api/post-register-posting";
 
 const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
   "& .MuiToggleButtonGroup-grouped": {
@@ -75,6 +80,7 @@ function getStyles(name, personName, theme) {
 }
 
 export default function CreatePosts() {
+  const { user, setUser } = useContext(UserContext);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const theme = useTheme();
@@ -97,11 +103,10 @@ export default function CreatePosts() {
     setPersonName(typeof value === "string" ? value.split(",") : value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("제목: ", title);
-    console.log("내용: ", content);
-    console.log("칩: ", personName);
+    const result = await registerPosting(title, content, user.accessToken);
+    alert(`${result.message} | total SWT acquired: ${result.reward}`);
   };
 
   return (
