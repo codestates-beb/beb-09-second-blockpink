@@ -9,7 +9,6 @@ import Posting from "../Posting";
 
 const Item = () => {
   const { user, setUser } = useContext(UserContext);
-
   const [infoNft, setInfoNft] = useState([]);
 
   return (
@@ -19,6 +18,7 @@ const Item = () => {
       <div className={styles.nftContainer}>
         {user.nfts ? (
           user.nfts.map((data, i) => {
+            console.log(data[0]);
             return (
               <Card
                 key={i}
@@ -27,12 +27,12 @@ const Item = () => {
               >
                 <CardMedia
                   sx={{ height: 140 }}
-                  image={data.tokenURI}
-                  title="green iguana"
+                  image={data[0].tokenURI}
+                  title={data[0].tokenId}
                 />
                 <CardContent>
                   <div>
-                    <p className={styles.cardTitle}>{data.tokenId}</p>
+                    <p className={styles.cardTitle}>{data[0].tokenId}</p>
                   </div>
                   <div className="cardContent">
                     <div className={styles.cardFloor}>
