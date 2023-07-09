@@ -103,9 +103,14 @@ export default function Header() {
   };
 
   const handleEthFaucetClicked = async () => {
-    console.log(user.accessToken);
-    const result = await ethFaucet(user.accessToken);
-    alert(result.msg);
+    try {
+      console.log(user.accessToken);
+      const result = await ethFaucet(user.accessToken);
+      alert(result.msg);
+    } catch (e) {
+      console.log(e);
+      alert(e);
+    }
   };
 
   useEffect(() => {
