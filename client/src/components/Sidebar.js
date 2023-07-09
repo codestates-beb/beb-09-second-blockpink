@@ -71,11 +71,7 @@ export default function Sidebar() {
           component={Link}
           to="/"
           startIcon={<HomeIcon />}
-          style={
-            isActiveLink("/")
-              ? { ...textStyle, ...activeLinkStyle }
-              : textStyle
-          }
+          style={isActiveLink("/") ? { ...textStyle, ...activeLinkStyle } : textStyle}
         >
           Home
         </MyButton>
@@ -86,11 +82,7 @@ export default function Sidebar() {
           component={Link}
           to="/mypage"
           startIcon={<PersonIcon />}
-          style={
-            isActiveLink("/mypage")
-              ? { ...textStyle, ...activeLinkStyle }
-              : textStyle
-          }
+          style={isActiveLink("/mypage") ? { ...textStyle, ...activeLinkStyle } : textStyle}
         >
           Profile
         </MyButton>
@@ -101,11 +93,7 @@ export default function Sidebar() {
           component={Link}
           to="/detail"
           startIcon={<CropOriginalIcon />}
-          style={
-            isActiveLink("/detail")
-              ? { ...textStyle, ...activeLinkStyle }
-              : textStyle
-          }
+          style={location.pathname.startsWith('/detail') ? { ...textStyle, ...activeLinkStyle } : textStyle}
         >
           See Detail
         </MyButton>
@@ -116,11 +104,7 @@ export default function Sidebar() {
           component={Link}
           to="/mint"
           startIcon={<StorefrontOutlinedIcon />}
-          style={
-            isActiveLink("/mint")
-              ? { ...textStyle, ...activeLinkStyle }
-              : textStyle
-          }
+          style={isActiveLink("/mint") ? { ...textStyle, ...activeLinkStyle } : textStyle}
         >
           NFT Market
         </MyButton>
@@ -131,11 +115,7 @@ export default function Sidebar() {
           component={Link}
           to="/write"
           startIcon={<PostAddIcon />}
-          style={
-            isActiveLink("/write")
-              ? { ...textStyle, ...activeLinkStyle }
-              : textStyle
-          }
+          style={isActiveLink("/write") ? { ...textStyle, ...activeLinkStyle } : textStyle}
         >
           Post
         </MyButton>

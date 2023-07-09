@@ -60,3 +60,13 @@
     font-size: 1.1rem;
     font-weight: 500;
 }
+
+.nftName {
+  width: 200px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-size: 14px;
+  color: #333;
+}
