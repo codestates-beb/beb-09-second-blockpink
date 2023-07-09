@@ -1,14 +1,15 @@
 .profileimage {
-    cursor: pointer;
-    transition: background-color 0.9s ease-in-out 0s, border-color 0.9s ease-in-out 0s;
-    overflow: hidden;
-    position: absolute;
-    inset: 0px;
-    border: none;
-    border-radius: 50%;
-    top: 300px;
-    left: 450px;
+  cursor: pointer;
+  transition: background-color 0.9s ease-in-out 0s,
+    border-color 0.9s ease-in-out 0s;
+  overflow: hidden;
+  position: absolute;
+  inset: 0px;
+  border: none;
+  border-radius: 50%;
+  top: 300px;
+  left: 300px;
 
-    width: 200px; /* Adjust the width as needed */
-    height: 200px; /* Adjust the height as needed */
-  };
+  width: 200px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
+}

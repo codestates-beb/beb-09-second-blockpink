@@ -1,17 +1,17 @@
 .walletAddress {
-    position: relative;
-    top: 20px;
-    left: 700px;
-    display: flex;
-    align-items: flex-start;
-    height: 100px;
+  position: relative;
+  top: 20px;
+  left: 300px;
+  display: flex;
+  align-items: flex-start;
+  height: 100px;
 }
 
 .walletIcon {
-    margin-right: 3px;
+  margin-right: 3px;
 }
 
 .address {
-    font-size: 1.1rem;
-    font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 500;
 }

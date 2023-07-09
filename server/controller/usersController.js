@@ -50,6 +50,7 @@ module.exports = {
 
         return res.status(200).json({
           msg: "ok",
+          nickname: userInfo.nickname,
           address: userInfo.address,
           token_amount: userInfo.token_amount,
           eth_amount: userInfo.eth_amount,
