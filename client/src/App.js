@@ -1,11 +1,10 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import React, { useEffect, useState, useMemo } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
-import Spinner from "./components/Spinner"; 
 
 import MainPage from "./pages/MainPage";
 import MyPage from "./pages/MyPage";
@@ -16,83 +15,51 @@ import NotFound from "./pages/NotFound";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 
+import { UserContext } from "./components/Context/UserContext";
+
 // api
 import { getPosting } from "./api/get-posting.js";
-
-const LoginContext = createContext();
-
-function PageContent() {
-  const [post, setPost] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); 
-  const location = useLocation();
-  const { loginHandler } = useContext(LoginContext);
-
-  useEffect(() => {
-    setIsLoading(true);
-
-    const fetchRandomPost = async () => {
-      try {
-        const postData = await getPosting();
-        setPost(postData);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false); 
-      }
-    };
-
-    const timer = setTimeout(() => {
-      fetchRandomPost();
-    }, 700); 
-
-    return () => clearTimeout(timer); 
-
-  }, [location]);
-
-  return (
-    isLoading ? (
-      <Spinner />
-    ) : (
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/write" element={<WritePage />} />
-        <Route path="/detail" element={<DetailPage />}>
-          <Route path=":id" />
-        </Route>
-        <Route path="/mint" element={<MintPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route
-          path="/login"
-          element={<LoginPage loginHandler={loginHandler} />}
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    )
-  );
-}
+import { getUserInfo } from "./api/get-userinfo";
 
 export default function App() {
-  const [login, setLogin] = useState({
+  const [user, setUser] = useState({
     isLogin: false,
     accessToken: "",
+    nickname: "",
+    address: "",
+    token_amount: "",
+    eth_amount: "",
+    nfts: [],
+    posts: [],
   });
 
-  const loginHandler = (token) => {
-    setLogin({
-      isLogin: true,
-      accessToken: token,
-    });
-  };
+  const value = useMemo(
+    () => ({
+      user,
+      setUser,
+    }),
+    [user, setUser]
+  );
 
   return (
-    <Router>
-      <Header />
-      <Sidebar />
-      <LoginContext.Provider value={{ login, loginHandler }}>
-        <PageContent />
-      </LoginContext.Provider>
-      <Footer />
-    </Router>
+    <UserContext.Provider value={value}>
+      <Router>
+        <Header />
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/write" element={<WritePage />} />
+          <Route path="/detail" element={<DetailPage />}>
+            <Route path=":id" />
+          </Route>
+          <Route path="/mint" element={<MintPage />}></Route>
+          <Route path="/signup" element={<SignUpPage />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+        <Footer />
+      </Router>
+    </UserContext.Provider>
   );
 }

@@ -2,10 +2,8 @@ const express = require("express");
 const app = express();
 const db = require("./models");
 const port = 8080;
-const path = require("path");
 
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
 
 const authRouter = require("./routes/auth");
 const ethFaucetRouter = require("./routes/ethFaucet");
@@ -16,13 +14,10 @@ const sendTokenRouter = require("./routes/sendToken");
 const usersRouter = require("./routes/users");
 const serverRouter = require("./routes/init");
 const fileUploadRouter = require("./routes/fileUpload");
+//
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
-
 app.use("/auth", authRouter);
 app.use("/eth-faucet", ethFaucetRouter);
 app.use("/join", joinRouter);

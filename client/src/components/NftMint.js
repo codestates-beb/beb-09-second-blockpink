@@ -1,7 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
-// import { useNavigate } from 'react-router-dom';
+import React, { useRef, useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import Web3 from 'web3';
 import {
   Box,
   Button,
@@ -15,15 +14,17 @@ import {
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import CircularProgress from "@mui/material/CircularProgress";
 import styles from "../assets/MintPage.module.css";
-import { useTheme } from "@mui/material/styles";
+import useTheme from "@mui/material/styles/useTheme";
+
+import { UserContext } from "../components/Context/UserContext";
+
+// api
+import { mintNft } from "../api/post-mint-nft";
 
 export default function NftMint() {
-  // let web3 = new Web3(window.ethereum);
-
-  // user info
-
+  const { user, setUser } = useContext(UserContext);
   const fileInput = useRef(null);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal Open handling
   const [message, setMessage] = useState(""); // Modal Message
   const [checkFile, setCheckFile] = useState(0); // 비디오(1)인지 이미지(0)인지 체크
@@ -98,21 +99,6 @@ export default function NftMint() {
   console.log("nftItem", nftItem);
   console.log("url", nftItemUrl);
 
-  const mintNFT = async (tokenURI) => {
-    const result = await axios({
-      url: "http://localhost:8080/nft/mint",
-      method: "post",
-      data: { tokenURI },
-    });
-    console.log(result.data);
-    setIsModalOpen(true);
-    setMessage("Minting completed.");
-    setTimeout(() => {
-      setIsModalOpen(false);
-      setMessage("");
-    }, 5000);
-  };
-
   /**
    * NFT 토큰을 발행하는 비동기 함수다.
    *
@@ -153,8 +139,18 @@ export default function NftMint() {
           console.log(res.data);
           // Here you can call the mintToken function and pass the metadata url.
           let tokenURI = `https://ipfs.io/ipfs/${res.data.ipfsHash}`; // assuming this is the format of the response
-          mintNFT(tokenURI);
           setTokenId(tokenId + 1); // 토큰이 발행된 후 토큰 ID 증가
+          mintNft(tokenURI, user.accessToken)
+            .then((result) => {
+              console.log(result);
+              setIsModalOpen(true);
+              setMessage("Minting completed.");
+              setTimeout(() => {
+                setIsModalOpen(false);
+                setMessage("");
+              }, 5000);
+            })
+            .catch((e) => console.log(e));
         });
       } catch (error) {
         console.log(error);

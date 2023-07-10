@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import SearchIcon from "@mui/icons-material/Search";
-import CropOriginalIcon from '@mui/icons-material/CropOriginal';
-import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
-import { styled } from '@mui/system';
+import CropOriginalIcon from "@mui/icons-material/CropOriginal";
+import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
+import { styled } from "@mui/system";
+
+import { UserContext } from "./Context/UserContext";
 
 const sidebarStyle = {
   position: "fixed",
@@ -50,13 +52,14 @@ const inputStyle = {
 };
 
 const MyButton = styled(Button)({
-  '&:hover': {
-    color: '#ff006c !important',
-    backgroundColor: 'transparent',
-  }
+  "&:hover": {
+    color: "#ff006c !important",
+    backgroundColor: "transparent",
+  },
 });
 
 export default function Sidebar() {
+  const { user, setUser } = useContext(UserContext);
   const location = useLocation();
 
   const isActiveLink = (pathname) => {
@@ -71,21 +74,43 @@ export default function Sidebar() {
           component={Link}
           to="/"
           startIcon={<HomeIcon />}
-          style={isActiveLink("/") ? { ...textStyle, ...activeLinkStyle } : textStyle}
+          style={
+            isActiveLink("/") ? { ...textStyle, ...activeLinkStyle } : textStyle
+          }
         >
           Home
         </MyButton>
       </div>
       <div style={linkStyle}>
-        <MyButton
-          color="secondary"
-          component={Link}
-          to="/mypage"
-          startIcon={<PersonIcon />}
-          style={isActiveLink("/mypage") ? { ...textStyle, ...activeLinkStyle } : textStyle}
-        >
-          Profile
-        </MyButton>
+        {user.isLogin ? (
+          <MyButton
+            color="secondary"
+            component={Link}
+            to="/mypage"
+            startIcon={<PersonIcon />}
+            style={
+              isActiveLink("/mypage")
+                ? { ...textStyle, ...activeLinkStyle }
+                : textStyle
+            }
+          >
+            Profile
+          </MyButton>
+        ) : (
+          <MyButton
+            color="secondary"
+            component={Link}
+            to="/login"
+            startIcon={<PersonIcon />}
+            style={
+              isActiveLink("/mypage")
+                ? { ...textStyle, ...activeLinkStyle }
+                : textStyle
+            }
+          >
+            Profile
+          </MyButton>
+        )}
       </div>
       <div style={linkStyle}>
         <MyButton

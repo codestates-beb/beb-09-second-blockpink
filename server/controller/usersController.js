@@ -4,7 +4,6 @@ const { Post, NFT, Users } = require("../models");
 
 module.exports = {
   getUserById: async (req, res) => {
-    const id = req.params.id;
     try {
       if (!req.headers.authorization) {
         return res.status(400).send("no authorization");
@@ -51,6 +50,7 @@ module.exports = {
 
         return res.status(200).json({
           msg: "ok",
+          nickname: userInfo.nickname,
           address: userInfo.address,
           token_amount: userInfo.token_amount,
           eth_amount: userInfo.eth_amount,
