@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import {
   Button,
@@ -7,6 +7,11 @@ import {
   Box,
   OutlinedInput,
   InputAdornment,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
@@ -14,6 +19,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 
 import { ethFaucet } from "../api/post-eth-faucet";
 import { UserContext } from "./Context/UserContext";
+import styles from '../assets/Header.module.css';
 
 const headerStyle = {
   position: "fixed",
@@ -81,6 +87,8 @@ export default function Header() {
   const [loginButtonHover, setLoginButtonHover] = useState(false);
   const [ethFaucetButtonHover, setEthFaucetButtonHover] = useState(false);
   const [isLoginPage, setIsLoginPage] = useState(false);
+  const [open, setOpen] = useState(false); // Modal Open handling 
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoginPage(location.pathname === "/login");
@@ -116,6 +124,30 @@ export default function Header() {
   useEffect(() => {
     setIsLoginPage(location.pathname === "/login");
   }, [location]);
+
+  const LogoutModal = () => {
+    setOpen(true);
+  };
+
+  const ModalClose = () => {
+    setOpen(false);
+    window.location.reload();
+  };
+
+  const Logout = () => {
+    setOpen(false);
+    setUser({
+      isLogin: false,
+      accessToken: "",
+      nickname: "",
+      address: "",
+      token_amount: "",
+      eth_amount: "",
+      nfts: [],
+      posts: [],
+    });
+    navigate('/login');
+  }
 
   return (
     <div style={headerStyle}>
@@ -180,21 +212,40 @@ export default function Header() {
                 overflow: "hidden",
                 textOverflow: "ellipsis",
               }}
-            >
+            >3
               ETH faucet
             </span>
           </Button>
 
           {user.isLogin ? (
-            <Link to="/mypage">
+            <Link onClick={LogoutModal}>
               <Button
-                startIcon={<AccountCircleOutlinedIcon />}
+                startIcon={<AccountCircleOutlinedIcon sx={{ marginRight: '10px' }}/>}
                 style={isLoginPage ? pinkButtonStyle : loginButtonStyle}
                 onMouseEnter={handleLoginButtonMouseEnter}
                 onMouseLeave={handleLoginButtonMouseLeave}
               >
-                User
+                Logout
               </Button>
+              <Dialog
+                open={open}
+                onClose={ModalClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                className={styles.logoutModal}
+              >
+                <DialogTitle id="alert-dialog-title">{"Confirm Logout"}</DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description"></DialogContentText>
+                  Are you sure you want to logout?
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={ModalClose} sx={{ color: '#000' }}>Cancel</Button>
+                  <Button onClick={Logout} autoFocus sx={{ color: 'red' }}>
+                    Logout
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </Link>
           ) : (
             <Link to="/login">
@@ -208,6 +259,8 @@ export default function Header() {
               </Button>
             </Link>
           )}
+          
+
         </Grid>
       </Grid>
       <Divider />
