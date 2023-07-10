@@ -31,13 +31,12 @@
   }
   
   .nftName {
-    width: 598px;
+    width: 96.5%;
     height: 48px;
     outline: none;
     padding: 0 12px 0 10px;
     border: 1px solid rgb(229, 232, 235);
     border-radius: 10px;
-    margin-top: 15px;
   }
   
   .nftName:focus {

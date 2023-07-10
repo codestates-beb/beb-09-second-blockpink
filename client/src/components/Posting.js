@@ -19,6 +19,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
+import { getPosting } from "../api/get-posting";
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -74,7 +76,9 @@ export default function Posting(props) {
         width: "50%",
         height: { xs: "18%", sm: "13%", md: "9%", lg: "7.5%", xl: "5%" },
         marginTop: { xs: "18%", sm: "13%", md: "9%", lg: "7.5%", xl: "5%" },
+        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
         marginBottom: "2%",
+        borderRadius: "25px"
       }}
     >
       <CardHeader

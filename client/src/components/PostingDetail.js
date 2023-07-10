@@ -64,7 +64,7 @@ export default function Posting(props) {
       <CardHeader
         avatar={<Avatar alt="Remy Sharp" src={image} sx={{ marginLeft: "-14px" }} />}
         action={
-          <IconButton aria-label="settings">
+          <IconButton aria-label="settings" style={{ marginLeft: "55%" }}>
             <MoreVertIcon />
           </IconButton>
         }

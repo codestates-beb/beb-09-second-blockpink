@@ -143,10 +143,12 @@ export default function CreatePosts() {
       <Box
         component="h2"
         sx={{
-          fontWeight: "bold",
-          fontSize: "33px",
+          fontWeight: '800',
+          fontFamily: "Nanum Myeongjo, Arial, sans-serif",
+          fontSize: { xl: '50px', md: '45px', sm: '35px', xs: '30px' },
           my: 2,
-          mt: 4,
+          marginTop: "5%",
+          marginLeft: { xl: '16.5%', md: '18%', sm: '16%', xs: '11.5%' },
         }}
       >
         Create Posts
@@ -318,11 +320,12 @@ export default function CreatePosts() {
             mt: 2,
             width: "50%",
             height: 55,
-            fontSize: "16px",
-            backgroundColor: "#ff006c",
-            boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.4)",
-            borderRadius: "20px",
-            "&:hover": { backgroundColor: "#BE3455" },
+            fontSize: '16px',
+            fontWeight: 'bold',
+            backgroundColor: '#ff006c',
+            boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.4)',
+            borderRadius: '20px',
+            '&:hover': { backgroundColor: '#BE3455' },
           }}
         >
           생성
