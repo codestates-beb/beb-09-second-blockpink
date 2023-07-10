@@ -28,11 +28,17 @@ module.exports = {
           id: postId,
         },
       });
+      const user = await Users.findOne({
+        where: {
+          id: result.p_userId,
+        },
+      });
       //   console.log(result.dataValues);
       const output = result.dataValues;
       res.status(200).json({
         message: "ok",
         post: output,
+        nickname: user.nickname,
       });
     } catch (e) {
       console.log(e);
