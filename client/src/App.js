@@ -18,7 +18,7 @@ import LoginPage from "./pages/LoginPage";
 import { UserContext } from "./components/Context/UserContext";
 
 // api
-import { getPosting } from "./api/get-posting.js";
+import { getPosting } from "./api/get-all-posting.js";
 import { getUserInfo } from "./api/get-userinfo";
 
 export default function App() {
@@ -50,8 +50,8 @@ export default function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/write" element={<WritePage />} />
-          <Route path="/detail" element={<DetailPage />}>
-            <Route path=":id" />
+          <Route path="/detail">
+            <Route path=":id" element={<DetailPage />} />
           </Route>
           <Route path="/mint" element={<MintPage />}></Route>
           <Route path="/signup" element={<SignUpPage />}></Route>

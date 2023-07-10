@@ -129,26 +129,26 @@ export default function CreatePosts() {
           mr: "auto",
           justifyContent: "center",
           width: "90%",
-          height: "100vh",
+          height: "120vh",
         },
         "@media (max-width: 766px)": {
           ml: "22%",
           mr: "auto",
           justifyContent: "center",
           width: "90%",
-          height: "100vh",
+          height: "120vh",
         },
       }}
     >
       <Box
         component="h2"
         sx={{
-          fontWeight: '800',
+          fontWeight: "800",
           fontFamily: "Nanum Myeongjo, Arial, sans-serif",
-          fontSize: { xl: '50px', md: '45px', sm: '35px', xs: '30px' },
+          fontSize: { xl: "50px", md: "45px", sm: "35px", xs: "30px" },
           my: 2,
           marginTop: "5%",
-          marginLeft: { xl: '16.5%', md: '18%', sm: '16%', xs: '11.5%' },
+          marginLeft: { xl: "16.5%", md: "18%", sm: "16%", xs: "11.5%" },
         }}
       >
         Create Posts
@@ -320,12 +320,12 @@ export default function CreatePosts() {
             mt: 2,
             width: "50%",
             height: 55,
-            fontSize: '16px',
-            fontWeight: 'bold',
-            backgroundColor: '#ff006c',
-            boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.4)',
-            borderRadius: '20px',
-            '&:hover': { backgroundColor: '#BE3455' },
+            fontSize: "16px",
+            fontWeight: "bold",
+            backgroundColor: "#ff006c",
+            boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.4)",
+            borderRadius: "20px",
+            "&:hover": { backgroundColor: "#BE3455" },
           }}
         >
           생성

@@ -1,18 +1,14 @@
 import axios from "axios";
 
-export const getPosting = async (userId) => {
+export const getPosting = async (id) => {
   try {
-    const response = await axios.get(`http://localhost:8080/post/${userId}`);
-    const postData = {
-      id: response.data.id,
-      title: response.data.title,
-      content: response.data.content,
-      createdAt: response.data.createdAt,
-      updatedAt: response.data.updatedAt,
-    };
-    return postData;
-  } catch (error) {
-    console.error(error);
-    throw error;
+    const result = await axios({
+      url: `http://localhost:8080/post/${id}`,
+      method: "get",
+    });
+    return result.data;
+  } catch (e) {
+    console.log(e);
+    throw e;
   }
 };

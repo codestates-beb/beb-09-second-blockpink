@@ -18,6 +18,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import logo from "../assets/logo.png";
 
 import { getPosting } from "../api/get-posting";
 
@@ -32,24 +33,28 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Posting(props) {
+export default function Posting({ id }) {
   const [expanded, setExpanded] = useState({});
   const [viewCount, setViewCount] = useState(0);
   const [image, setImage] = useState("");
   const [expandedWidth, setExpandedWidth] = useState("auto");
+  const [post, setPost] = useState({});
 
   useEffect(() => {
-    fetch("https://api.example.com/viewCount")
-      .then((response) => response.json())
-      .then((data) => setViewCount(data.count))
-      .catch((error) => console.error(error));
+    getPosting(id)
+      .then((res) => {
+        setPost({
+          nickname: res.nickname,
+          title: res.post.title,
+          content: res.post.content,
+          createdAt: res.post.createdAt,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
 
-    fetch(
-      "https://api.unsplash.com/photos/random?client_id=GoPF7PTv9CUtpw-gJRWeEEY9mw55igwhUXI2rDiDlpg"
-    )
-      .then((response) => response.json())
-      .then((data) => setImage(data.urls.regular))
-      .catch((error) => console.error(error));
+    setImage(logo);
   }, []);
 
   const handleExpandClick = (cardIndex) => {
@@ -78,7 +83,7 @@ export default function Posting(props) {
         marginTop: { xs: "18%", sm: "13%", md: "9%", lg: "7.5%", xl: "5%" },
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
         marginBottom: "2%",
-        borderRadius: "25px"
+        borderRadius: "25px",
       }}
     >
       <CardHeader
@@ -95,7 +100,7 @@ export default function Posting(props) {
               component="div"
               style={{ fontWeight: 800 }}
             >
-              {dummyData.title}
+              {post.nickname}
             </Typography>
             <Typography
               fontSize={12}
@@ -117,11 +122,11 @@ export default function Posting(props) {
             component="div"
             style={{ fontWeight: "500" }}
           >
-            {dummyData.date}
+            {post.createdAt}
           </Typography>
         }
       />
-      <Link to="/detail">
+      <Link to={`/detail/${id}`}>
         <CardMedia component="img" height="450" src={image} alt="image" />
       </Link>
       <CardContent>
@@ -130,7 +135,7 @@ export default function Posting(props) {
           color="text.primary"
           style={{ fontWeight: "500" }}
         >
-          {dummyData.content}
+          {post.title}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -171,7 +176,7 @@ export default function Posting(props) {
             color="text.primary"
             style={{ fontWeight: "500" }}
           >
-            {dummyData.details}
+            {post.content}
           </Typography>
         </CardContent>
       </Collapse>
