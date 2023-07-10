@@ -4,6 +4,7 @@ const db = require("./models");
 const port = 8080;
 
 const cors = require("cors");
+require("dotenv").config();
 
 const authRouter = require("./routes/auth");
 const ethFaucetRouter = require("./routes/ethFaucet");

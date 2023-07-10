@@ -133,4 +133,20 @@ module.exports = {
       return res.status(500).send("internal server error");
     }
   },
+
+  deletePostById: async () => {
+    try {
+    } catch (e) {
+      console.log(e);
+      res.status(500).send("internal server error");
+    }
+  },
+
+  updatePostById: async () => {
+    try {
+    } catch (e) {
+      console.log(e);
+      res.status(500).send("internal server error");
+    }
+  },
 };
