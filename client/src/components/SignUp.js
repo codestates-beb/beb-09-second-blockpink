@@ -25,19 +25,12 @@ export default function Signup() {
 
     const formIsValid = validateForm();
     if (formIsValid) {
-      // 아이디 중복 확인을 위한 API 요청
-      // const response = await fetch("/api/checkUsername", {
-      //   method: "POST",
-      //   body: JSON.stringify({ username: name }),
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
       const result = await postSignup(name, email, password);
-      console.log(result);
       if (result.msg === "회원가입이 완료되었습니다.") {
         alert("회원가입 완료");
         navigate("/login");
+      } else {
+        alert(result);
       }
     }
   };

@@ -66,13 +66,16 @@ router.post("/", (req, res, next) => {
       await transferTx.wait();
 
       //발신자, 수신자의 지갑계정을 조회하고 이를 통해 토큰 양을 DB에 업데이트
-
-      const senderBalance = ethers.BigNumber.from(
-        await tokenContract.balanceOf(sender.address)
-      ).toString();
-      const receiverBalance = ethers.BigNumber.from(
-        await tokenContract.balanceOf(receiver.address)
-      ).toString();
+      const senderBalance = ethers.utils
+        .formatEther(
+          ethers.BigNumber.from(await tokenContract.balanceOf(sender.address))
+        )
+        .toString();
+      const receiverBalance = ethers.utils
+        .formatEther(
+          ethers.BigNumber.from(await tokenContract.balanceOf(receiver.address))
+        )
+        .toString();
 
       await Users.update(
         { token_amount: senderBalance },
