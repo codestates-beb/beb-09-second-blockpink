@@ -24,16 +24,18 @@ export default function Signup() {
     event.preventDefault();
 
     const formIsValid = validateForm();
-    if (formIsValid) {
-      const result = await postSignup(name, email, password);
-      if (result.msg === "회원가입이 완료되었습니다.") {
-        alert("회원가입 완료");
-        navigate("/login");
-      } else {
-        alert(result);
-      }
+    if (!formIsValid) {
+      return;
     }
-  };
+
+    const result = await postSignup(name, email, password);
+    if (result.msg === "회원가입이 완료되었습니다.") {
+      alert("회원가입 완료");
+      navigate("/login");
+    } else {
+      alert(result);
+    }
+  }; 
 
   const validateForm = () => {
     let isValid = true;
@@ -42,27 +44,37 @@ export default function Signup() {
     if (name.trim() === "") {
       errors.name = "닉네임을 입력해주세요.";
       isValid = false;
+    } else {
+      delete errors.name;
     }
 
     const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
     if (!emailRegex.test(email)) {
       errors.email = "유효한 이메일 형식이 아닙니다.";
       isValid = false;
+    } else {
+      delete errors.email;
     }
 
     if (password.length < 8) {
       errors.password = "비밀번호는 최소 8자 이상이어야 합니다.";
       isValid = false;
+    } else {
+      delete errors.password;
     }
 
     if (password !== confirmPassword) {
       errors.confirmPassword = "비밀번호가 일치하지 않습니다.";
       isValid = false;
+    } else {
+      delete errors.confirmPassword;
     }
 
     if (!isChecked) {
       errors.isChecked = "약관에 동의해야 합니다.";
       isValid = false;
+    } else {
+      delete errors.isChecked;
     }
 
     setErrors(errors);
@@ -71,6 +83,7 @@ export default function Signup() {
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+    clearError("isChecked");
   };
 
   const handleTextHover = (text) => {
@@ -80,6 +93,66 @@ export default function Signup() {
   const handleTextLeave = () => {
     setHoveredText("");
   };
+
+  const clearError = (field) => {
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [field]: "",
+    }));
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    clearError(name);
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    switch (name) {
+      case "name":
+        setName(value);
+        break;
+      case "email":
+        setEmail(value);
+        if (!emailRegex.test(value)) {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: "유효한 이메일 형식이 아닙니다.",
+          }));
+        }
+        break;
+      case "password":
+        setPassword(value);
+        if (value.length < 8) {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            password: "비밀번호는 최소 8자 이상이어야 합니다.",
+          }));
+        } else if (value === confirmPassword) {
+          clearError("password");
+          clearError("confirmPassword");
+        } else {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            password: "비밀번호가 일치하지 않습니다.",
+            confirmPassword: "비밀번호가 일치하지 않습니다.",
+          }));
+        }
+        break;
+      case "confirmPassword":
+        setConfirmPassword(value);
+        if (value === password) {
+          clearError("password");
+          clearError("confirmPassword");
+        } else {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            password: "비밀번호가 일치하지 않습니다.",
+            confirmPassword: "비밀번호가 일치하지 않습니다.",
+          }));
+        }
+        break;
+      default:
+        break;
+    }
+  };  
 
   return (
     <Box
@@ -105,18 +178,26 @@ export default function Signup() {
           position: "relative",
         }}
       >
-        <img
-          src="/LoginLogo.png"
-          alt="logo"
+        <Link
+          to="/"
           style={{
-            width: "16%",
-            position: "absolute",
-            top: -43,
-            left: "50%",
-            transform: "translateX(-50%)",
+            color: "inherit",
+            textDecoration: "none",
           }}
-        />
-        Sweeter
+        >
+          <img
+            src="/LoginLogo.png"
+            alt="logo"
+            style={{
+              width: "16%",
+              position: "absolute",
+              top: -43,
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          />
+          Sweeter
+        </Link>
       </Box>
       <Box
         sx={{
@@ -130,8 +211,9 @@ export default function Signup() {
       >
         <TextField
           label="Nickname"
+          name="name"
           value={name}
-          onChange={(event) => setName(event.target.value)}
+          onChange={handleInputChange}
           margin="normal"
           required
           error={!!errors.name}
@@ -161,8 +243,9 @@ export default function Signup() {
       >
         <TextField
           label="Email"
+          name="email"
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={handleInputChange}
           margin="normal"
           required
           error={!!errors.email}
@@ -193,8 +276,9 @@ export default function Signup() {
         <TextField
           label="Password"
           type="password"
+          name="password"
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={handleInputChange}
           margin="normal"
           required
           error={!!errors.password}
@@ -214,8 +298,9 @@ export default function Signup() {
         <TextField
           label="Confirm password"
           type="password"
+          name="confirmPassword"
           value={confirmPassword}
-          onChange={(event) => setConfirmPassword(event.target.value)}
+          onChange={handleInputChange}
           margin="normal"
           required
           error={!!errors.confirmPassword}

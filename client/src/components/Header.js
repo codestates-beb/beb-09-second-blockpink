@@ -28,6 +28,7 @@ const headerStyle = {
   backgroundColor: "#fff",
   zIndex: 999,
   border: "1px solid #d3d3d3",
+  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.15)",
 };
 
 const logoStyle = {
@@ -220,7 +221,7 @@ export default function Header() {
           {user.isLogin ? (
             <Link onClick={LogoutModal}>
               <Button
-                startIcon={<AccountCircleOutlinedIcon sx={{ marginRight: '10px' }}/>}
+                startIcon={<AccountCircleOutlinedIcon sx={{ marginRight: '0px' }}/>}
                 style={isLoginPage ? pinkButtonStyle : loginButtonStyle}
                 onMouseEnter={handleLoginButtonMouseEnter}
                 onMouseLeave={handleLoginButtonMouseLeave}
