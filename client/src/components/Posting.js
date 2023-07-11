@@ -21,6 +21,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import logo from "../assets/logo.png";
+import picture from "../assets/picture1.jpg";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -62,8 +63,12 @@ export default function Posting({ id, accessToken }) {
     try {
       const result = await deletePosting(accessToken, id);
       console.log(result);
-      alert("게시글이 삭제되었습니다.");
-      navigate("/");
+      if (result.message === "ok") {
+        alert("게시글이 삭제되었습니다.");
+        navigate("/");
+      } else {
+        alert("게시글 삭제에 실패하였습니다.");
+      }
     } catch (e) {
       console.log(e);
     }
@@ -112,12 +117,13 @@ export default function Posting({ id, accessToken }) {
   return (
     <Card
       sx={{
-        width: "50%",
+        width: accessToken ? "90%" : "50%",
         height: { xs: "18%", sm: "13%", md: "9%", lg: "7.5%", xl: "5%" },
         marginTop: { xs: "18%", sm: "13%", md: "9%", lg: "7.5%", xl: "5%" },
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
         marginBottom: "2%",
         borderRadius: "25px",
+        marginLeft: "1rem",
       }}
     >
       <CardHeader
@@ -186,7 +192,7 @@ export default function Posting({ id, accessToken }) {
         }
       />
       <Link to={`/detail/${id}`}>
-        <CardMedia component="img" height="450" src={image} alt="image" />
+        <CardMedia component="img" height="450" src={picture} alt="image" />
       </Link>
       <CardContent>
         <Typography

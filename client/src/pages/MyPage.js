@@ -51,7 +51,7 @@ const MyPage = () => {
 
   return (
     // <div className={styles.myPageContainer}>
-    <Container style={{ margin: "0 auto 1rem", width: "70%" }}>
+    <Container style={{ margin: "1rem auto", width: "70%" }}>
       <Banner />
       <ProfileImg />
       <UserInfo />

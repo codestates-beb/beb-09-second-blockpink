@@ -82,7 +82,19 @@ const UserInfo = () => {
               style={{ marginLeft: "-54%", marginTop: "1.3%", fontSize: 17 }}
             >
               <span style={{ color: "#000" }}>Sweet Token Amount</span> |{" "}
-              <span style={{ color: "#777" }}>{user.token_amount}</span>
+              <span
+                style={{ color: "#777" }}
+              >{`${user.token_amount} SWT`}</span>
+            </Typography>
+          </div>
+          <div>
+            <Typography
+              variant="h6"
+              fontWeight="800"
+              style={{ marginLeft: "-54%", marginTop: "1.3%", fontSize: 17 }}
+            >
+              <span style={{ color: "#000" }}>ETH Amount</span> |{" "}
+              <span style={{ color: "#777" }}>{`${user.eth_amount} ETH`}</span>
             </Typography>
           </div>
         </div>
@@ -110,11 +122,7 @@ const UserInfo = () => {
           </Button>
           <Modal open={open} onClose={handleClose}>
             <Box sx={style}>
-              <Typography
-                id="modal-modal-title"
-                variant="h6"
-                component="h2"
-              >
+              <Typography id="modal-modal-title" variant="h6" component="h2">
                 Recipient Email to send
               </Typography>
               <TextField
@@ -124,11 +132,7 @@ const UserInfo = () => {
                   setRecipient(e.target.value);
                 }}
               ></TextField>
-              <Typography
-                id="modal-modal-title"
-                variant="h6"
-                component="h2"
-              >
+              <Typography id="modal-modal-title" variant="h6" component="h2">
                 Token amount to send
               </Typography>
               <TextField

@@ -121,7 +121,7 @@ const Item = () => {
       ) : (
         <div className={styles.postContainer}>
           {userPosts.length > 0 ? (
-            userPosts.map((data) => (
+            userPosts[0].map((data) => (
               <div key={data.postId} className={styles.postContent}>
                 <Posting
                   id={data.postId}

@@ -185,8 +185,7 @@ export default function NftMint() {
         gap: 2,
         width: "100%",
         maxWidth: "646px",
-        margin: "0 auto",
-        marginTop: "100px",
+        margin: "10% auto",
       }}
     >
       <Box
