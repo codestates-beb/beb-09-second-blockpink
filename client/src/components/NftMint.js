@@ -10,6 +10,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Alert,
 } from "@mui/material";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -137,6 +138,7 @@ export default function NftMint() {
           },
         }).then((res) => {
           console.log(res.data);
+          setLoading(false);
           // Here you can call the mintToken function and pass the metadata url.
           let tokenURI = `https://ipfs.io/ipfs/${res.data.ipfsHash}`; // assuming this is the format of the response
           setTokenId(tokenId + 1); // 토큰이 발행된 후 토큰 ID 증가
@@ -148,7 +150,8 @@ export default function NftMint() {
               setTimeout(() => {
                 setIsModalOpen(false);
                 setMessage("");
-              }, 5000);
+              }, 2000);
+              navigate("/mypage");
             })
             .catch((e) => console.log(e));
         });
@@ -173,96 +176,94 @@ export default function NftMint() {
   const theme = useTheme();
 
   return (
-<Box
-  sx={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 2,
-    width: "100%",
-    maxWidth: "646px",
-    margin: "0 auto",
-    marginTop: "100px",
-  }}
->
-  <Box
-    sx={{
-      display: "flex",
-      justifyContent: "space-center",
-      width: "100%",
-      alignItems: "center",
-      marginTop: "15px",
-      marginLeft: "57%",
-    }}
-  >
-<Box
-  sx={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-start",
-    marginBottom: "1rem",
-  }}
->
-<Typography
-  variant="h3"
-  sx={{
-    fontWeight: "800",
-    fontSize: "45px",
-    fontFamily: "Nanum Myeongjo, Arial, sans-serif",
-    textAlign: "center", 
-    "@media (max-width: 899px)": {
-      fontSize: "40px", 
-      marginLeft: "20px",
-    },
-    "@media (max-width: 599px)": {
-      fontSize: "30px", 
-      marginLeft: "20px",
-    },
-  }}
->
-  Create a NFT
-</Typography>
-  <Box>
-    <Typography
-      variant="caption"
+    <Box
       sx={{
-        fontSize: "0.8rem",
-        fontWeight: "bold",
-        color: "#ff006c",
-        marginBottom: "12%",
-        marginLeft: "347px",
-        "@media (max-width: 1399px)": {
-          fontSize: "0.75rem", 
-          marginLeft: "352px",
-        },
-        "@media (max-width: 1299px)": {
-          fontSize: "0.75rem", 
-          marginLeft: "352px",
-        },
-        "@media (max-width: 1199px)": {
-          fontSize: "0.75rem", 
-          marginLeft: "287px",
-        },
-        "@media (max-width: 899px)": {
-          fontSize: "0.7rem", 
-          marginLeft: "230px",
-        },
-        "@media (max-width: 599px)": {
-          fontSize: "0.5rem", 
-          marginLeft: "170px",
-        },
-        "@media (max-width: 500px)": {
-          fontSize: "0.5rem", 
-          marginLeft: "143px",
-        },
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 2,
+        width: "100%",
+        maxWidth: "646px",
+        margin: "10% auto",
       }}
     >
-      <span style={{ color: "#ff006c",
-                   }}>(*)</span> Required fields
-    </Typography>
-  </Box>
-</Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-center",
+          width: "100%",
+          alignItems: "center",
+          marginTop: "15px",
+          marginLeft: "57%",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            marginBottom: "1rem",
+          }}
+        >
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: "800",
+              fontSize: "45px",
+              fontFamily: "Nanum Myeongjo, Arial, sans-serif",
+              textAlign: "center",
+              "@media (max-width: 899px)": {
+                fontSize: "40px",
+                marginLeft: "20px",
+              },
+              "@media (max-width: 599px)": {
+                fontSize: "30px",
+                marginLeft: "20px",
+              },
+            }}
+          >
+            Create a NFT
+          </Typography>
+          <Box>
+            <Typography
+              variant="caption"
+              sx={{
+                fontSize: "0.8rem",
+                fontWeight: "bold",
+                color: "#ff006c",
+                marginBottom: "12%",
+                marginLeft: "347px",
+                "@media (max-width: 1399px)": {
+                  fontSize: "0.75rem",
+                  marginLeft: "352px",
+                },
+                "@media (max-width: 1299px)": {
+                  fontSize: "0.75rem",
+                  marginLeft: "352px",
+                },
+                "@media (max-width: 1199px)": {
+                  fontSize: "0.75rem",
+                  marginLeft: "287px",
+                },
+                "@media (max-width: 899px)": {
+                  fontSize: "0.7rem",
+                  marginLeft: "230px",
+                },
+                "@media (max-width: 599px)": {
+                  fontSize: "0.5rem",
+                  marginLeft: "170px",
+                },
+                "@media (max-width: 500px)": {
+                  fontSize: "0.5rem",
+                  marginLeft: "143px",
+                },
+              }}
+            >
+              <span style={{ color: "#ff006c" }}>(*)</span> Required fields
+            </Typography>
+          </Box>
+        </Box>
       </Box>
       <Box
         sx={{
@@ -286,36 +287,43 @@ export default function NftMint() {
           },
         }}
       ></Box>
-      <Box sx={{ alignSelf: "flex-start",}}>
+      <Box sx={{ alignSelf: "flex-start" }}>
         <Typography
           variant="body1"
-          sx={{ fontWeight: "bold", 
-                fontSize: "20px", 
-                marginTop: "30px",
-                "@media (max-width: 1199px)": {
-                   marginLeft: "18%"
-                },
-                "@media (max-width: 899px)": {
-                  marginLeft: "34%"
-                },
-                "@media (max-width: 599px)": {
-                  marginLeft: "39%"
-                },
-                "@media (max-width: 500px)": {
-                  marginLeft: "44%"
-                },
-               }}
+          sx={{
+            fontWeight: "bold",
+            fontSize: "20px",
+            marginTop: "30px",
+            "@media (max-width: 1199px)": {
+              marginLeft: "18%",
+            },
+            "@media (max-width: 899px)": {
+              marginLeft: "34%",
+            },
+            "@media (max-width: 599px)": {
+              marginLeft: "39%",
+            },
+            "@media (max-width: 500px)": {
+              marginLeft: "44%",
+            },
+          }}
         >
           Image, Video <span style={{ fontWeight: "bold" }}>*</span>
         </Typography>
-        <Typography variant="caption" sx={{ fontSize: '12.5px', fontWeight: '600',
-              "@media (max-width: 1199px)": {
-                paddingRight: "0%", color: "#f9f9f9"
-              },
-              "@media (max-width: 500px)": {
-                fontSize: "1px"
-              },
-      }}>
+        <Typography
+          variant="caption"
+          sx={{
+            fontSize: "12.5px",
+            fontWeight: "600",
+            "@media (max-width: 1199px)": {
+              paddingRight: "0%",
+              color: "#f9f9f9",
+            },
+            "@media (max-width: 500px)": {
+              fontSize: "1px",
+            },
+          }}
+        >
           (File types supported: JPG, PNG, GIF, MP4. Max size: 100 MB)
         </Typography>
       </Box>
@@ -365,19 +373,23 @@ export default function NftMint() {
                 width: "450%",
               },
               "@media (max-width: 1299px)": {
-                width: "450%", 
+                width: "450%",
               },
               "@media (max-width: 1199px)": {
-                width: "355%", marginLeft: "50%"
+                width: "355%",
+                marginLeft: "50%",
               },
               "@media (max-width: 899px)": {
-                width: "266%", marginLeft: "95%"
+                width: "266%",
+                marginLeft: "95%",
               },
               "@media (max-width: 599px)": {
-                width: "200%", marginLeft: "108%"
+                width: "200%",
+                marginLeft: "108%",
               },
               "@media (max-width: 500px)": {
-                width: "170%", marginLeft: "92%"
+                width: "170%",
+                marginLeft: "92%",
               },
               ":hover": {
                 backgroundColor: "#ebeaea",
@@ -385,62 +397,62 @@ export default function NftMint() {
               cursor: "pointer",
             }}
           >
-            <ImageOutlinedIcon
-              sx={{ color: "#d3d3d3", fontSize: "7rem" }}
-            />
+            <ImageOutlinedIcon sx={{ color: "#d3d3d3", fontSize: "7rem" }} />
           </Box>
         )}
       </Box>
       <Typography
-          variant="body2"
-          sx={{ alignSelf: "flex-center",
-                fontWeight: "800", 
-                fontSize: "1.2rem", 
-                marginTop: "20px", 
-                marginLeft: "-91.5%",
-                [theme.breakpoints.down("xl")]: {
-                  width: "100%", marginLeft: "0%"
-                },
-                [theme.breakpoints.down("lg")]: {
-                  width: "80%", 
-                },
-                [theme.breakpoints.down("md")]: {
-                  width: "60%", 
-                },
-                [theme.breakpoints.down("sm")]: {
-                  width: "50%", 
-                },
-                [theme.breakpoints.down("xs")]: {
-                  width: "40%", 
-                },
-               }}
-        >
-          Title <span style={{ fontWeight: "800" }}>*</span>
-        </Typography>
-        <Box
-  sx={{
-    width: '100%',
-    alignSelf: "flex-center",
-    marginTop: "-5px",
-    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.15)",
-    borderRadius: "10px",
-    [theme.breakpoints.down("xl")]: {
-      width: "100%",
-    },
-    [theme.breakpoints.down("lg")]: {
-      width: "80%", 
-    },
-    [theme.breakpoints.down("md")]: {
-      width: "60%", 
-    },
-    [theme.breakpoints.down("sm")]: {
-      width: "50%", 
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "40%", 
-    },
-  }}
->
+        variant="body2"
+        sx={{
+          alignSelf: "flex-center",
+          fontWeight: "800",
+          fontSize: "1.2rem",
+          marginTop: "20px",
+          marginLeft: "-91.5%",
+          [theme.breakpoints.down("xl")]: {
+            width: "100%",
+            marginLeft: "0%",
+          },
+          [theme.breakpoints.down("lg")]: {
+            width: "80%",
+          },
+          [theme.breakpoints.down("md")]: {
+            width: "60%",
+          },
+          [theme.breakpoints.down("sm")]: {
+            width: "50%",
+          },
+          [theme.breakpoints.down("xs")]: {
+            width: "40%",
+          },
+        }}
+      >
+        Title <span style={{ fontWeight: "800" }}>*</span>
+      </Typography>
+      <Box
+        sx={{
+          width: "100%",
+          alignSelf: "flex-center",
+          marginTop: "-5px",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.15)",
+          borderRadius: "10px",
+          [theme.breakpoints.down("xl")]: {
+            width: "100%",
+          },
+          [theme.breakpoints.down("lg")]: {
+            width: "80%",
+          },
+          [theme.breakpoints.down("md")]: {
+            width: "60%",
+          },
+          [theme.breakpoints.down("sm")]: {
+            width: "50%",
+          },
+          [theme.breakpoints.down("xs")]: {
+            width: "40%",
+          },
+        }}
+      >
         <input
           type="text"
           className={styles.nftName}
@@ -451,67 +463,69 @@ export default function NftMint() {
         />
       </Box>
       <Typography
-          variant="body2"
-          sx={{ alignSelf: "flex-center",
-                fontWeight: "800", 
-                fontSize: "1.2rem", 
-                marginTop: "20px", 
-                marginLeft: "-91.5%",
-                [theme.breakpoints.down("xl")]: {
-                  width: "100%", marginLeft: "0%"
-                },
-                [theme.breakpoints.down("lg")]: {
-                  width: "80%", 
-                },
-                [theme.breakpoints.down("md")]: {
-                  width: "60%", 
-                },
-                [theme.breakpoints.down("sm")]: {
-                  width: "50%", 
-                },
-                [theme.breakpoints.down("xs")]: {
-                  width: "40%", 
-                },
-              }}
-        >
-          Price
-        </Typography>
-        <Box
-  sx={{
-    width: '100%',
-    alignSelf: "flex-center",
-    marginTop: "-5px",
-    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.15)",
-    borderRadius: "10px",
-    [theme.breakpoints.down("xl")]: {
-      width: "100%",
-    },
-    [theme.breakpoints.down("lg")]: {
-      width: "80%",  
-    },
-    [theme.breakpoints.down("md")]: {
-      width: "60%", 
-    },
-    [theme.breakpoints.down("sm")]: {
-      width: "50%", 
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "40%", 
-    },
-  }}
->
-  <div>
-    <input
-      type="number"
-      className={styles.nftName}
-      placeholder="amount"
-      value={price}
-      onChange={priceChange}
-      required
-      disabled
-    />
-  </div>
-</Box>
+        variant="body2"
+        sx={{
+          alignSelf: "flex-center",
+          fontWeight: "800",
+          fontSize: "1.2rem",
+          marginTop: "20px",
+          marginLeft: "-91.5%",
+          [theme.breakpoints.down("xl")]: {
+            width: "100%",
+            marginLeft: "0%",
+          },
+          [theme.breakpoints.down("lg")]: {
+            width: "80%",
+          },
+          [theme.breakpoints.down("md")]: {
+            width: "60%",
+          },
+          [theme.breakpoints.down("sm")]: {
+            width: "50%",
+          },
+          [theme.breakpoints.down("xs")]: {
+            width: "40%",
+          },
+        }}
+      >
+        Price
+      </Typography>
+      <Box
+        sx={{
+          width: "100%",
+          alignSelf: "flex-center",
+          marginTop: "-5px",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.15)",
+          borderRadius: "10px",
+          [theme.breakpoints.down("xl")]: {
+            width: "100%",
+          },
+          [theme.breakpoints.down("lg")]: {
+            width: "80%",
+          },
+          [theme.breakpoints.down("md")]: {
+            width: "60%",
+          },
+          [theme.breakpoints.down("sm")]: {
+            width: "50%",
+          },
+          [theme.breakpoints.down("xs")]: {
+            width: "40%",
+          },
+        }}
+      >
+        <div>
+          <input
+            type="number"
+            className={styles.nftName}
+            placeholder="amount"
+            value={price}
+            onChange={priceChange}
+            required
+            disabled
+          />
+        </div>
+      </Box>
       <Box
         sx={{
           borderBottom: "1px solid #d3d3d3",
@@ -534,40 +548,40 @@ export default function NftMint() {
           },
         }}
       ></Box>
-    <Button
-      variant="contained"
-      sx={{
-        alignSelf: "center",
-        width: "100%",
-        height: "50px",
-        fontSize: "15px",
-        fontWeight: "800",
-        borderRadius: "15px",
-        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.3)",
-        backgroundColor: "#ff006c",
-        "&:hover": {
-          backgroundColor: "#e20060",
-        },
-        [theme.breakpoints.down("xl")]: {
+      <Button
+        variant="contained"
+        sx={{
+          alignSelf: "center",
           width: "100%",
-        },
-        [theme.breakpoints.down("lg")]: {
-          width: "80%",
-        },
-        [theme.breakpoints.down("md")]: {
-          width: "60%",
-        },
-        [theme.breakpoints.down("sm")]: {
-          width: "50%",
-        },
-        [theme.breakpoints.down("xs")]: {
-          width: "40%",
-        },
-      }}
-      onClick={mintHandle}
-    >
-      Mint
-    </Button>
+          height: "50px",
+          fontSize: "15px",
+          fontWeight: "800",
+          borderRadius: "15px",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.3)",
+          backgroundColor: "#ff006c",
+          "&:hover": {
+            backgroundColor: "#e20060",
+          },
+          [theme.breakpoints.down("xl")]: {
+            width: "100%",
+          },
+          [theme.breakpoints.down("lg")]: {
+            width: "80%",
+          },
+          [theme.breakpoints.down("md")]: {
+            width: "60%",
+          },
+          [theme.breakpoints.down("sm")]: {
+            width: "50%",
+          },
+          [theme.breakpoints.down("xs")]: {
+            width: "40%",
+          },
+        }}
+        onClick={mintHandle}
+      >
+        Mint
+      </Button>
       <Dialog
         open={isModalOpen}
         onClose={closeModal}
@@ -588,7 +602,10 @@ export default function NftMint() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeModal} sx={{ color: "#000", fontWeight: '800' }}>
+          <Button
+            onClick={closeModal}
+            sx={{ color: "#000", fontWeight: "800" }}
+          >
             Close
           </Button>
         </DialogActions>

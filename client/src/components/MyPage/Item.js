@@ -1,5 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Tab, Tabs, Card, CardMedia, CardContent, Typography } from "@mui/material";
+import {
+  Tab,
+  Tabs,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import styles from "../../assets/Item.module.css";
 import { UserContext } from "../Context/UserContext";
 
@@ -83,7 +90,10 @@ const Item = () => {
                 />
                 <CardContent>
                   <div>
-                    <p className={styles.cardTitle} style={{ marginLeft: "185px", marginTop: "0px" }}>
+                    <p
+                      className={styles.cardTitle}
+                      style={{ marginLeft: "185px", marginTop: "0px" }}
+                    >
                       {data.tokenId}
                     </p>
                   </div>
@@ -111,9 +121,13 @@ const Item = () => {
       ) : (
         <div className={styles.postContainer}>
           {userPosts.length > 0 ? (
-            userPosts.map((data) => (
+            userPosts[0].map((data) => (
               <div key={data.postId} className={styles.postContent}>
-                <Posting id={data.postId} key={data.postId} />
+                <Posting
+                  id={data.postId}
+                  accessToken={user.accessToken}
+                  key={data.postId}
+                />
               </div>
             ))
           ) : (
