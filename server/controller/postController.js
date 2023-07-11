@@ -1,4 +1,4 @@
-const { ethers, BigNumber } = require("ethers");
+const { ethers } = require("ethers");
 const { Post, ServerAccount, Users } = require("../models");
 const jwt = require("jsonwebtoken");
 
@@ -134,16 +134,69 @@ module.exports = {
     }
   },
 
-  deletePostById: async () => {
+  deletePostById: async (req, res) => {
     try {
+      if (!req.headers.authorization) {
+        return res.status(400).send("no authorization");
+      } else {
+        const accessToken = req.headers.authorization.split(" ")[1];
+        const data = jwt.verify(accessToken, process.env.ACCESS_SECRET);
+        const postId = req.params.id;
+
+        const result = await Post.destroy({
+          where: {
+            id: postId,
+            p_userId: data.userId,
+          },
+        });
+        console.log(result);
+        if (result === 0) {
+          return res.status(401).send("no access to current post");
+        } else {
+          return res.status(200).json({
+            message: "ok",
+            deletedPostId: postId,
+          });
+        }
+      }
     } catch (e) {
       console.log(e);
       res.status(500).send("internal server error");
     }
   },
 
-  updatePostById: async () => {
+  updatePostById: async (req, res) => {
     try {
+      if (!req.headers.authorization) {
+        return res.status(400).send("no authorization");
+      } else {
+        const accessToken = req.headers.authorization.split(" ")[1];
+        const data = jwt.verify(accessToken, process.env.ACCESS_SECRET);
+        const postId = req.params.id;
+        const { title, content } = req.body;
+
+        const result = await Post.update(
+          {
+            title: title,
+            content: content,
+          },
+          {
+            where: {
+              id: postId,
+              p_userId: data.userId,
+            },
+          }
+        );
+        console.log(result);
+        if (result[0] === 0) {
+          return res.status(401).send("no access to current post");
+        } else {
+          return res.status(200).json({
+            message: "ok",
+            updatedPostId: postId,
+          });
+        }
+      }
     } catch (e) {
       console.log(e);
       res.status(500).send("internal server error");
