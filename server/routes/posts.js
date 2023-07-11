@@ -26,6 +26,6 @@ router.post("/register", registerPostWithTokenReward);
 router.delete("/:id", deletePostById);
 
 // 특정 글 업데이트 API
-router.put(":id", updatePostById);
+router.put("/:id", updatePostById);
 
 module.exports = router;
