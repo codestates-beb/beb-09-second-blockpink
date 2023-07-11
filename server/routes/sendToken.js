@@ -65,6 +65,8 @@ router.post("/", (req, res, next) => {
 
       await transferTx.wait();
 
+      console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:${sender.address}`)
+      console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:${receiver.address}`)
       //발신자, 수신자의 지갑계정을 조회하고 이를 통해 토큰 양을 DB에 업데이트
       const senderBalance = ethers.utils
         .formatEther(

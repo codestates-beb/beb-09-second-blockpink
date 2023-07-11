@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "start:dev": "nodemon --watch server/ app.js",
+    "daemon": "pm2 start daemon.js --watch --no-daemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -15,12 +16,14 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "ethers": "5.4",
+    "ethers": "5.7",
     "express": "^4.18.2",
-    "multer": "^1.4.5-lts.1",
     "jsonwebtoken": "^9.0.0",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^3.4.3",
+    "node-cron": "^3.0.2",
     "nodemon": "^2.0.22",
+    "pm2": "^5.3.0",
     "sequelize": "^6.32.1",
     "sequelize-cli": "^6.6.1"
   }
