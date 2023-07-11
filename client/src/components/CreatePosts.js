@@ -22,6 +22,7 @@ import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { Alert, AlertTitle } from "@mui/material";
 import { styled } from "@mui/system";
 
 import { UserContext } from "./Context/UserContext";
@@ -87,6 +88,8 @@ export default function CreatePosts() {
   const [personName, setPersonName] = useState([]);
   const [alignment, setAlignment] = useState("left");
   const [formats, setFormats] = useState(() => ["italic"]);
+  const [warning, setWarning] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleAlignment = (event, newAlignment) => {
     setAlignment(newAlignment);
@@ -105,8 +108,17 @@ export default function CreatePosts() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await registerPosting(title, content, user.accessToken);
-    alert(`${result.message} | total SWT acquired: ${result.reward}`);
+    if (title === "" && content === "") {
+      setWarning(true);
+      alert("제목과 내용을 입력해주세요.");
+    } else {
+      const result = await registerPosting(title, content, user.accessToken);
+      setWarning(false);
+      setSuccess(true);
+      setTitle("");
+      setContent("");
+      alert(`${result.message} | total SWT acquired: ${result.reward}`);
+    }
   };
 
   return (
@@ -373,6 +385,18 @@ export default function CreatePosts() {
           </Select>
         </FormControl>
       </Box>
+      {warning ? (
+        <Alert severity="warning" style={{ width: "55%", margin: "1rem" }}>
+          <AlertTitle>Warning</AlertTitle>
+          You should enter title and content — <strong>check it out!</strong>
+        </Alert>
+      ) : null}
+      {success ? (
+        <Alert severity="success" style={{ width: "55%", margin: "1rem" }}>
+          <AlertTitle>Success</AlertTitle>
+          Posting Succeed — <strong>check it out!</strong>
+        </Alert>
+      ) : null}
     </Box>
   );
 }

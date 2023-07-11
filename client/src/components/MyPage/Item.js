@@ -70,7 +70,13 @@ const Item = () => {
         {userPosts !== undefined ? (
           userPosts.length !== 0 ? (
             userPosts[0].map((data, i) => {
-              return <Posting id={data.postId} key={data.postId} />;
+              return (
+                <Posting
+                  id={data.postId}
+                  accessToken={user.accessToken}
+                  key={data.postId}
+                />
+              );
             })
           ) : (
             <div>
