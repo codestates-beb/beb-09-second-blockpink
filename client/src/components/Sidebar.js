@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import PersonIcon from "@mui/icons-material/Person";
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import SearchIcon from "@mui/icons-material/Search";
-import CropOriginalIcon from "@mui/icons-material/CropOriginal";
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
 import { styled } from "@mui/system";
 
@@ -73,7 +72,7 @@ export default function Sidebar() {
           color="secondary"
           component={Link}
           to="/"
-          startIcon={<HomeIcon />}
+          startIcon={<HomeOutlinedIcon />}
           style={
             isActiveLink("/") ? { ...textStyle, ...activeLinkStyle } : textStyle
           }
@@ -87,7 +86,7 @@ export default function Sidebar() {
             color="secondary"
             component={Link}
             to="/mypage"
-            startIcon={<PersonIcon />}
+            startIcon={<PersonOutlineIcon />}
             style={
               isActiveLink("/mypage")
                 ? { ...textStyle, ...activeLinkStyle }
@@ -101,7 +100,7 @@ export default function Sidebar() {
             color="secondary"
             component={Link}
             to="/login"
-            startIcon={<PersonIcon />}
+            startIcon={<PersonOutlineIcon />}
             style={
               isActiveLink("/mypage")
                 ? { ...textStyle, ...activeLinkStyle }
@@ -111,17 +110,6 @@ export default function Sidebar() {
             Profile
           </MyButton>
         )}
-      </div>
-      <div style={linkStyle}>
-        <MyButton
-          color="secondary"
-          component={Link}
-          to="/detail"
-          startIcon={<CropOriginalIcon />}
-          style={location.pathname.startsWith('/detail') ? { ...textStyle, ...activeLinkStyle } : textStyle}
-        >
-          See Detail
-        </MyButton>
       </div>
       <div style={linkStyle}>
         <MyButton
