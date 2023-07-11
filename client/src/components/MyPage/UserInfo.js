@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../assets/UserInfo.module.css";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { Typography, Button, Modal, Box, TextField } from "@mui/material";
 
 import { UserContext } from "../Context/UserContext";
@@ -15,28 +14,12 @@ const UserInfo = () => {
   const [tokenAmount, setTokenAmount] = useState("");
   const [recipient, setRecipient] = useState("");
 
-  const navigate = useNavigate();
-
   const handleClose = () => {
     setOpen(false);
   };
 
   const handleOpen = () => {
     setOpen(true);
-  };
-
-  const handleLogout = () => {
-    setUser({
-      isLogin: false,
-      accessToken: "",
-      nickname: "",
-      address: "",
-      token_amount: "",
-      eth_amount: "",
-      nfts: [],
-      posts: [],
-    });
-    navigate("/login");
   };
 
   const sendToken = async () => {
@@ -65,30 +48,61 @@ const UserInfo = () => {
       <div className={styles.walletAddress}>
         <div>
           <div style={{ display: "flex" }}>
-            <Typography variant="h4" color="#000">
+            <Typography
+              variant="h4"
+              color="#000"
+              fontWeight="550"
+              fontSize={37}
+              style={{ marginLeft: "-55%", marginTop: "-2%" }}
+            >
               {user.nickname}
             </Typography>
-            <AccountBalanceWalletIcon className={styles.walletIcon} />
           </div>
-          <Typography variant="h6" color="#000">
-            Wallet Address
+          <Typography
+            variant="h6"
+            color="#000"
+            fontWeight="800"
+            fontSize={18}
+            style={{ marginLeft: "-54%", marginTop: "5%" }}
+          >
+            Wallet Address |
           </Typography>
-          <Typography>{user.address}</Typography>
+          <Typography
+            color="#777"
+            fontWeight="800"
+            fontSize={17}
+            style={{ marginLeft: "-18.7%", marginTop: "-6.6%" }}
+          >
+            {user.address}
+          </Typography>
           <div>
-            <Typography variant="h6" color="#000">
-              {`Sweet Token Amount: ${user.token_amount}`}
+            <Typography
+              variant="h6"
+              fontWeight="800"
+              style={{ marginLeft: "-54%", marginTop: "1.3%", fontSize: 17 }}
+            >
+              <span style={{ color: "#000" }}>Sweet Token Amount</span> |{" "}
+              <span style={{ color: "#777" }}>{user.token_amount}</span>
             </Typography>
           </div>
         </div>
-        <div>
+        <div className={styles.button}>
           <Button
-            style={{ margin: "0.5rem" }}
+            style={{
+              margin: "0.5rem",
+              marginTop: "-9px",
+              marginLeft: "-285px",
+              color: "#fff",
+              backgroundColor: "#ff006c",
+            }}
             variant="contained"
             sx={{
               alignSelf: "flex-start",
-              width: "120px",
-              height: "50px",
-              borderRadius: "15px",
+              width: "100px",
+              height: "44px",
+              borderRadius: "20px",
+              fontSize: "12px",
+              fontWeight: "bold",
             }}
             onClick={handleOpen}
           >
@@ -96,7 +110,11 @@ const UserInfo = () => {
           </Button>
           <Modal open={open} onClose={handleClose}>
             <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Typography
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
                 Recipient Email to send
               </Typography>
               <TextField
@@ -106,7 +124,11 @@ const UserInfo = () => {
                   setRecipient(e.target.value);
                 }}
               ></TextField>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
+              <Typography
+                id="modal-modal-title"
+                variant="h6"
+                component="h2"
+              >
                 Token amount to send
               </Typography>
               <TextField
@@ -122,17 +144,24 @@ const UserInfo = () => {
             </Box>
           </Modal>
           <Button
-            style={{ display: "block", margin: "0.5rem" }}
+            style={{
+              display: "block",
+              marginTop: "-51px",
+              marginLeft: "-175px",
+              color: "#fff",
+              backgroundColor: "#ff006c",
+            }}
             variant="contained"
             sx={{
               alignSelf: "flex-start",
-              width: "120px",
-              height: "50px",
-              borderRadius: "15px",
+              width: "100px",
+              height: "43px",
+              borderRadius: "20px",
+              fontSize: "12px",
+              fontWeight: "bold",
             }}
-            onClick={handleLogout}
           >
-            Logout
+            FOLLOW
           </Button>
         </div>
       </div>

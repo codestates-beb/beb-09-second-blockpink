@@ -1,5 +1,24 @@
 .itemContainer {
-  padding: 0 30px;
+  padding: 0 70px;
+  margin-top: 20px;
+}
+
+@media (max-width: 1800px) {
+  .itemContainer {
+   padding: 0 145px;
+  }
+}
+
+@media (max-width: 999px) {
+  .itemContainer {
+   padding: 0 75px;
+  }
+}
+
+@media (max-width: 599px) {
+  .itemContainer {
+   padding: 0 30px;
+  }
 }
 
 .title {
@@ -8,17 +27,17 @@
 }
 
 .borderBottom {
-  width: 100%;
-  border-bottom: 2px solid #000;
-  margin: 15px 0;
+  width: 94%;
+  border-bottom: 2px solid #b9b9b9;
+  margin: 0.5px 0;
 }
 
 .nftContainer {
-  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   align-items: center;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-left: -30px;
 }
 
 .nftContainer > a {
@@ -34,27 +53,34 @@
   width: 100%;
   height: 300px;
   margin: 0 auto;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15) !important;
+  cursor: pointer;
 }
 
 .cardTitle {
   font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 12px;
+  font-weight: 800;
+  margin-bottom: -40px;
 }
 
 .cardFloor,
 .cardTotal {
   font-size: 0.9rem;
-  margin-top: -5px;
 }
 
 .cardFloor > p:first-child,
 .cardTotal > p:first-child {
-  color: #999;
+  color: #5d5d5d;
+  font-weight: bold;
 }
 
 .cardFloor > p:last-child,
 .cardTotal > p:last-child {
-  font-weight: 500;
+  font-weight: bold;
+}
+
+.postContent {
+  margin-top: -20px;
+  margin-left: -10px;
+  max-height: 700px;
 }

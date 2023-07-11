@@ -90,6 +90,13 @@ export default function Login() {
           position: "relative",
         }}
       >
+      <Link
+        to="/"
+        style={{
+          color: "inherit", 
+          textDecoration: "none",
+        }}
+      >
         <img
           src="/LoginLogo.png"
           alt="logo"
@@ -102,6 +109,7 @@ export default function Login() {
           }}
         />
         Sweeter
+        </Link>
       </Box>
       <Box
         sx={{

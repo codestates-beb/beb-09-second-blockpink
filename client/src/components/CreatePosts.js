@@ -147,7 +147,7 @@ export default function CreatePosts() {
           fontFamily: "Nanum Myeongjo, Arial, sans-serif",
           fontSize: { xl: "50px", md: "45px", sm: "35px", xs: "30px" },
           my: 2,
-          marginTop: "5%",
+          marginTop: "-50%",
           marginLeft: { xl: "16.5%", md: "18%", sm: "16%", xs: "11.5%" },
         }}
       >

@@ -6,7 +6,6 @@ import Item from "../components/MyPage/Item";
 import UserInfo from "../components/MyPage/UserInfo";
 import { UserContext } from "../components/Context/UserContext";
 
-import styles from "../assets/MyPage.module.css";
 import { Container } from "@mui/material";
 
 // api
