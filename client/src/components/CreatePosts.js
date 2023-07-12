@@ -137,7 +137,7 @@ export default function CreatePosts() {
         width: "85%",
         height: "64vh",
         "@media (min-width: 767px)": {
-          mt: "1%",
+          mt: "25%",
           ml: "22%",
           mr: "auto",
           justifyContent: "center",

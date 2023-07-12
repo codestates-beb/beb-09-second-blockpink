@@ -46,15 +46,35 @@ export default function App() {
   );
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
+    const accessToken = localStorage.getItem("accessToken");
+    getUserInfo(accessToken)
+      .then((result) => {
+        console.log(result);
+        setUser({
+          isLogin: true,
+          accessToken: accessToken,
+          nickname: result.nickname,
+          address: result.address,
+          token_amount: result.token_amount,
+          eth_amount: result.eth_amount,
+          nfts: [result.nfts],
+          posts: [result.posts],
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+        setUser({
+          isLogin: false,
+          accessToken: "",
+          nickname: "",
+          address: "",
+          token_amount: "",
+          eth_amount: "",
+          nfts: [],
+          posts: [],
+        });
+      });
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
 
   useEffect(() => {
     async function fetchData() {
