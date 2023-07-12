@@ -5,7 +5,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
-import Spinner from "./components/Spinner"; 
+import Spinner from "./components/Spinner";
 
 import MainPage from "./pages/MainPage";
 import MyPage from "./pages/MyPage";
@@ -44,7 +44,18 @@ export default function App() {
     }),
     [user, setUser]
   );
-  
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("user");
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -74,18 +85,18 @@ export default function App() {
         {pageLoading ? (
           <Spinner /> // 로딩 중이면 로딩 컴포넌트를 반환
         ) : (
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/write" element={<WritePage />} />
-          <Route path="/detail">
-            <Route path=":id" element={<DetailPage />} />
-          </Route>
-          <Route path="/mint" element={<MintPage />}></Route>
-          <Route path="/signup" element={<SignUpPage />}></Route>
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/write" element={<WritePage />} />
+            <Route path="/detail">
+              <Route path=":id" element={<DetailPage />} />
+            </Route>
+            <Route path="/mint" element={<MintPage />}></Route>
+            <Route path="/signup" element={<SignUpPage />}></Route>
+            <Route path="/login" element={<LoginPage />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
         )}
         <Footer />
       </Router>

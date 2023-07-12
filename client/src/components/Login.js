@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -7,6 +7,7 @@ import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 
+import { getUserInfo } from "../api/get-userinfo";
 import { postLogin } from "../api/post-login";
 import { UserContext } from "./Context/UserContext";
 
@@ -30,6 +31,7 @@ export default function Login() {
     const result = await postLogin(email, password);
 
     if (result.msg === "로그인에 성공했습니다.") {
+      localStorage.setItem("accessToken", result.token);
       setUser({ isLogin: true, accessToken: result.token });
       alert("로그인 성공");
       navigate("/mypage");
@@ -90,25 +92,25 @@ export default function Login() {
           position: "relative",
         }}
       >
-      <Link
-        to="/"
-        style={{
-          color: "inherit", 
-          textDecoration: "none",
-        }}
-      >
-        <img
-          src="/LoginLogo.png"
-          alt="logo"
+        <Link
+          to="/"
           style={{
-            width: "16%",
-            position: "absolute",
-            top: -43,
-            left: "50%",
-            transform: "translateX(-50%)",
+            color: "inherit",
+            textDecoration: "none",
           }}
-        />
-        Sweeter
+        >
+          <img
+            src="/LoginLogo.png"
+            alt="logo"
+            style={{
+              width: "16%",
+              position: "absolute",
+              top: -43,
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+          />
+          Sweeter
         </Link>
       </Box>
       <Box
