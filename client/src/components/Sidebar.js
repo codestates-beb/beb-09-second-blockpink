@@ -16,7 +16,7 @@ const sidebarStyle = {
   top: 0,
   width: "15%",
   height: "100%",
-  backgroundColor: "#fff",
+  background: "linear-gradient(to bottom, #fff, #faf4f7)",
   padding: "1.5%",
   paddingTop: "5.5%",
   overflowY: "auto",

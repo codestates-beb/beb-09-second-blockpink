@@ -18,7 +18,6 @@ import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineR
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import logo from "../assets/logo.png";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -37,10 +36,33 @@ export default function PostingDetail({ post }) {
   const [likeCount, setLikeCount] = useState(0);
   const [commentCount, setCommentCount] = useState(0);
   const [image, setImage] = useState("");
+  const [isImageClicked, setIsImageClicked] = useState(false);
 
   useEffect(() => {
-    setImage(logo);
+    fetchAvatar();
   }, []);
+
+  const fetchAvatar = async () => {
+    try {
+      const response = await fetch("https://api.unsplash.com/photos/random?client_id=gmMEtxOLtydYvjbI_SWI8InO7S9y5rdAlBX7DcwVC4g");
+      if (response.ok) {
+        const avatarData = await response.json();
+        const avatarUrl = avatarData.urls.regular;
+        setImage(avatarUrl);
+      } else {
+        // Handle error response
+      }
+    } catch (error) {
+      // Handle fetch error
+    }
+  };
+
+  const handleCardClick = () => {
+    if (!isImageClicked) {
+      setViewCount((prevCount) => prevCount + 1);
+      setIsImageClicked(true);
+    }
+  };
 
   const handleExpandClick = (cardIndex) => {
     setExpanded((prevExpanded) => ({
@@ -48,6 +70,26 @@ export default function PostingDetail({ post }) {
       [cardIndex]: !prevExpanded[cardIndex],
     }));
   };
+
+  const getTimeAgo = (dateString) => {
+    const currentDate = new Date();
+    const targetDate = new Date(dateString);
+
+    const timeDiff = currentDate - targetDate;
+    const secondsDiff = Math.floor(timeDiff / 1000);
+    const minutesDiff = Math.floor(secondsDiff / 60);
+    const hoursDiff = Math.floor(minutesDiff / 60);
+
+    if (hoursDiff < 24) {
+      return `${hoursDiff}시간 전`;
+    } else {
+      const daysDiff = Math.floor(hoursDiff / 24);
+      return `${daysDiff}일 전`;
+    }
+  };
+
+  const formattedTimeAgo = getTimeAgo(post.createdAt);
+  const formattedCreatedAt = post.createdAt ? post.createdAt.split("T")[0] : "";
 
   return (
     <Card
@@ -58,6 +100,7 @@ export default function PostingDetail({ post }) {
         boxShadow: "none",
         backgroundColor: "#f9f9f9",
       }}
+      onClick={handleCardClick}
     >
       <CardHeader
         avatar={
@@ -93,7 +136,7 @@ export default function PostingDetail({ post }) {
                 display: "inline",
               }}
             >
-              7시간 전
+              {formattedTimeAgo}
             </Typography>
           </span>
         }
@@ -101,7 +144,7 @@ export default function PostingDetail({ post }) {
           <Typography
             style={{ fontSize: "14px", fontWeight: "500", marginLeft: "-5px" }}
           >
-            {post.createdAt}
+            {formattedCreatedAt}
           </Typography>
         }
       />
