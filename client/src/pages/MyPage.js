@@ -16,12 +16,13 @@ const MyPage = () => {
   const location = useLocation();
 
   useEffect(() => {
-    getUserInfo(user.accessToken)
+    const accessToken = localStorage.getItem("accessToken");
+    getUserInfo(accessToken)
       .then((result) => {
         console.log(result);
         setUser({
-          isLogin: user.isLogin,
-          accessToken: user.accessToken,
+          isLogin: true,
+          accessToken: accessToken,
           nickname: result.nickname,
           address: result.address,
           token_amount: result.token_amount,
@@ -45,8 +46,6 @@ const MyPage = () => {
         navigate("/login");
       });
   }, []);
-
-  console.log(user);
 
   return (
     <div className={location.pathname === "/mypage" ? "route-mypage" : ""}>

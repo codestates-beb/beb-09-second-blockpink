@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import {
   Card,
@@ -11,6 +11,8 @@ import {
   Avatar,
   IconButton,
   Typography,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
@@ -18,8 +20,12 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CommentIcon from "@mui/icons-material/Comment";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
+// api
 import { getPosting } from "../api/get-posting";
+import { deletePosting } from "../api/delete-posting";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -32,13 +38,45 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Posting({ id }) {
+export default function Posting({ id, accessToken }) {
   const [expanded, setExpanded] = useState({});
   const [viewCount, setViewCount] = useState(0);
   const [avatar, setAvatar] = useState("");
   const [image, setImage] = useState("");
   const [expandedWidth, setExpandedWidth] = useState("auto");
   const [post, setPost] = useState({});
+
+  const navigate = useNavigate();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleDelete = async () => {
+    setAnchorEl(null);
+    try {
+      const result = await deletePosting(accessToken, id);
+      console.log(result);
+      if (result.message === "ok") {
+        alert("게시글이 삭제되었습니다.");
+        navigate("/");
+      } else {
+        alert("게시글 삭제에 실패하였습니다.");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleEdit = async () => {
+    setAnchorEl(null);
+    navigate("/write");
+  };
 
   useEffect(() => {
     getPosting(id)
@@ -120,9 +158,34 @@ export default function Posting({ id }) {
       <CardHeader
         avatar={<Avatar alt="Remy Sharp" src={avatar} />}
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <div>
+            <IconButton
+              id="basic-button"
+              aria-label="settings"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              open={open}
+              MenuListProps={{ "aria-labelledby": "basic-button" }}
+            >
+              <MenuItem onClick={handleEdit}>
+                <ModeEditIcon />
+                Edit
+              </MenuItem>
+              <MenuItem onClick={handleDelete}>
+                <DeleteIcon />
+                Delete
+              </MenuItem>
+            </Menu>
+          </div>
         }
         title={
           <div style={{ display: "flex" }}>
