@@ -13,6 +13,5 @@ export const getUserInfo = async (accessToken) => {
     return result.data;
   } catch (e) {
     console.log(e);
-    alert(e);
   }
 };

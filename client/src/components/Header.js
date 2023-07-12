@@ -16,7 +16,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import { ethFaucet } from "../api/post-eth-faucet";
 import { UserContext } from "./Context/UserContext";
@@ -133,7 +133,8 @@ export default function Header() {
 
   const Logout = () => {
     window.location.replace("/login");
-    // setOpen(false);
+    setOpen(false);
+    localStorage.removeItem("accessToken");
     // setUser({
     //   isLogin: false,
     //   accessToken: "",
@@ -178,16 +179,31 @@ export default function Header() {
             />
           </Box>
         </Grid>
-        <Grid item xs={2.5} style={{ display: "flex", justifyContent: "flex-end" }}>
+        <Grid
+          item
+          xs={2.5}
+          style={{ display: "flex", justifyContent: "flex-end" }}
+        >
           <Button
             color="secondary"
             startIcon={<LocalAtmIcon />}
-            style={ethFaucetButtonHover ? ethFaucetButtonHoverStyle : ethFaucetButtonStyle}
+            style={
+              ethFaucetButtonHover
+                ? ethFaucetButtonHoverStyle
+                : ethFaucetButtonStyle
+            }
             onMouseEnter={handleEthFaucetButtonMouseEnter}
             onMouseLeave={handleEthFaucetButtonMouseLeave}
             onClick={handleEthFaucetClicked}
           >
-            <span style={{ display: "inline-block", maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis" }}>
+            <span
+              style={{
+                display: "inline-block",
+                maxWidth: "100%",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
               ETH faucet
             </span>
           </Button>
@@ -196,7 +212,9 @@ export default function Header() {
             <>
               <Link>
                 <Button
-                  startIcon={<AccountCircleOutlinedIcon sx={{ marginRight: "0px" }} />}
+                  startIcon={
+                    <AccountCircleOutlinedIcon sx={{ marginRight: "0px" }} />
+                  }
                   style={isLoginPage ? pinkButtonStyle : loginButtonStyle}
                   onMouseEnter={handleLoginButtonMouseEnter}
                   onMouseLeave={handleLoginButtonMouseLeave}
@@ -219,8 +237,16 @@ export default function Header() {
                     },
                   }}
                 >
-                  <div style={{ display: "flex", justifyContent: "center", marginBottom: "-50px" }}>
-                    <LogoutIcon style={{ fontSize: 60, color: "gray", marginTop: "20px"}} />
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      marginBottom: "-50px",
+                    }}
+                  >
+                    <LogoutIcon
+                      style={{ fontSize: 60, color: "gray", marginTop: "20px" }}
+                    />
                   </div>
                   <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
                   <DialogContent>
@@ -235,7 +261,11 @@ export default function Header() {
                       }}
                     >
                       Are you sure you want to{" "}
-                      <span style={{ color: "#ff006c", backgroundColor: "#f4f4f4" }}>Logout?</span>
+                      <span
+                        style={{ color: "#ff006c", backgroundColor: "#f4f4f4" }}
+                      >
+                        Logout?
+                      </span>
                     </DialogContentText>
                   </DialogContent>
                   <DialogActions>
