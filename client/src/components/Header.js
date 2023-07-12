@@ -16,6 +16,7 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import LocalAtmIcon from "@mui/icons-material/LocalAtm";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import { ethFaucet } from "../api/post-eth-faucet";
 import { UserContext } from "./Context/UserContext";
@@ -156,16 +157,9 @@ export default function Header() {
             <img
               src={process.env.PUBLIC_URL + "/logo.png"}
               alt="Logo"
-              style={{
-                ...logoStyle,
-              }}
+              style={logoStyle}
             />
-            <span
-              style={{
-                ...sweeterTextStyle,
-                color: "#ff006c",
-              }}
-            >
+            <span style={{ ...sweeterTextStyle, color: "#ff006c" }}>
               Sweeter
             </span>
           </Link>
@@ -184,31 +178,16 @@ export default function Header() {
             />
           </Box>
         </Grid>
-        <Grid
-          item
-          xs={2.5}
-          style={{ display: "flex", justifyContent: "flex-end" }}
-        >
+        <Grid item xs={2.5} style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button
             color="secondary"
             startIcon={<LocalAtmIcon />}
-            style={
-              ethFaucetButtonHover
-                ? ethFaucetButtonHoverStyle
-                : ethFaucetButtonStyle
-            }
+            style={ethFaucetButtonHover ? ethFaucetButtonHoverStyle : ethFaucetButtonStyle}
             onMouseEnter={handleEthFaucetButtonMouseEnter}
             onMouseLeave={handleEthFaucetButtonMouseLeave}
             onClick={handleEthFaucetClicked}
           >
-            <span
-              style={{
-                display: "inline-block",
-                maxWidth: "100%",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
+            <span style={{ display: "inline-block", maxWidth: "100%", overflow: "hidden", textOverflow: "ellipsis" }}>
               ETH faucet
             </span>
           </Button>
@@ -217,9 +196,7 @@ export default function Header() {
             <>
               <Link>
                 <Button
-                  startIcon={
-                    <AccountCircleOutlinedIcon sx={{ marginRight: "0px" }} />
-                  }
+                  startIcon={<AccountCircleOutlinedIcon sx={{ marginRight: "0px" }} />}
                   style={isLoginPage ? pinkButtonStyle : loginButtonStyle}
                   onMouseEnter={handleLoginButtonMouseEnter}
                   onMouseLeave={handleLoginButtonMouseLeave}
@@ -233,19 +210,65 @@ export default function Header() {
                   aria-labelledby="alert-dialog-title"
                   aria-describedby="alert-dialog-description"
                   className={styles.logoutModal}
+                  sx={{
+                    "& .MuiDialog-paper": {
+                      borderRadius: "20px",
+                      boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.2)",
+                      width: "350px",
+                      height: "260px",
+                    },
+                  }}
                 >
-                  <DialogTitle id="alert-dialog-title">
-                    {"Confirm Logout"}
-                  </DialogTitle>
+                  <div style={{ display: "flex", justifyContent: "center", marginBottom: "-50px" }}>
+                    <LogoutIcon style={{ fontSize: 60, color: "gray", marginTop: "20px"}} />
+                  </div>
+                  <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
                   <DialogContent>
-                    <DialogContentText id="alert-dialog-description"></DialogContentText>
-                    Are you sure you want to logout?
+                    <DialogContentText
+                      id="alert-dialog-description"
+                      style={{
+                        fontSize: "15.5px",
+                        fontWeight: "800",
+                        color: "#36383a",
+                        marginTop: "53px",
+                        marginLeft: "20px",
+                      }}
+                    >
+                      Are you sure you want to{" "}
+                      <span style={{ color: "#ff006c", backgroundColor: "#f4f4f4" }}>Logout?</span>
+                    </DialogContentText>
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={ModalClose} sx={{ color: "#000" }}>
+                    <Button
+                      style={{
+                        width: "170px",
+                        height: "55px",
+                        display: "block",
+                        fontSize: "14px",
+                        borderRadius: "15px",
+                        backgroundColor: "#dbdee9",
+                        color: "#36383a",
+                        marginTop: "30px",
+                        marginRight: "60px",
+                      }}
+                      onClick={ModalClose}
+                    >
                       Cancel
                     </Button>
-                    <Button onClick={Logout} autoFocus sx={{ color: "red" }}>
+                    <Button
+                      style={{
+                        width: "170px",
+                        height: "55px",
+                        display: "block",
+                        fontSize: "14px",
+                        borderRadius: "15px",
+                        backgroundColor: "#ff006c",
+                        color: "#fff",
+                        marginLeft: "-50px",
+                        marginTop: "30px",
+                      }}
+                      onClick={Logout}
+                    >
                       Logout
                     </Button>
                   </DialogActions>

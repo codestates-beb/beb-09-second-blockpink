@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Banner from "../components/MyPage/Banner";
 import ProfileImg from "../components/MyPage/ProfileImg";
 import Item from "../components/MyPage/Item";
 import UserInfo from "../components/MyPage/UserInfo";
 import { UserContext } from "../components/Context/UserContext";
-
 import { Container } from "@mui/material";
 
 // api
@@ -13,8 +12,8 @@ import { getUserInfo } from "../api/get-userinfo";
 
 const MyPage = () => {
   const { user, setUser } = useContext(UserContext);
-
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -49,14 +48,14 @@ const MyPage = () => {
   }, []);
 
   return (
-    // <div className={styles.myPageContainer}>
-    <Container style={{ margin: "1rem auto", width: "70%" }}>
-      <Banner />
-      <ProfileImg />
-      <UserInfo />
-      <Item />
-    </Container>
-    // </div>
+    <div className={location.pathname === "/mypage" ? "route-mypage" : ""}>
+      <Container style={{ margin: "1rem auto", width: "70%" }}>
+        <Banner />
+        <ProfileImg />
+        <UserInfo />
+        <Item />
+      </Container>
+    </div>
   );
 };
 

@@ -10,7 +10,7 @@ const footerContentStyle = {
   position: 'fixed',
   bottom: '0%',
   right: '0%',
-  backgroundColor: '#fff',
+  background: "linear-gradient(to bottom, #fff, #faf4f7)",
   padding: '2%',
   width: '20%',
   height: '95%',

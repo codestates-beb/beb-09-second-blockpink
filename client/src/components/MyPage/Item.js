@@ -36,6 +36,8 @@ const Item = () => {
           },
           "& .MuiTabs-indicator": {
             backgroundColor: "#ff006c",
+            height: "5px",
+            borderRadius: "100px",
           },
           "& .MuiTabs-root": {
             borderBottom: "1px solid #000",
@@ -78,7 +80,7 @@ const Item = () => {
                   borderRadius: "20px",
                   transition: "transform 0.3s",
                   "&:hover": {
-                    transform: "scale(1.05)",
+                    transform: "scale(1.03)",
                   },
                 }}
                 className={styles.nft}
