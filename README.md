@@ -27,6 +27,7 @@ BlockPink
 ## 프로젝트 소개
 
 ### 백엔드 아키텍처
+![스크린샷 2023-07-12 오후 2 09 14](https://github.com/codestates-beb/beb-09-second-blockpink/assets/82312931/a4fd0668-d1a2-4222-97c8-6938b0716797)
 
 ### 프론트엔드 플로우차트
 
