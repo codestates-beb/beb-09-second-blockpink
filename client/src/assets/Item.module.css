@@ -1,6 +1,7 @@
 .itemContainer {
   padding: 0 70px;
-  margin-top: 20px;
+  height: auto;
+  margin-top: 40px;
 }
 
 @media (max-width: 1800px) {
@@ -29,7 +30,7 @@
 .borderBottom {
   width: 94%;
   border-bottom: 2px solid #b9b9b9;
-  margin: 0.5px 0;
+  margin: 0px 0;
 }
 
 .nftContainer {
@@ -80,7 +81,9 @@
 }
 
 .postContent {
-  margin-top: -20px;
-  margin-left: -10px;
-  max-height: 700px;
+  margin-top: -50px;
+  margin-left: -2px;
+  max-height: 1000px;
+  width: 190%;
+  transition: margin-top 0.3s;
 }
