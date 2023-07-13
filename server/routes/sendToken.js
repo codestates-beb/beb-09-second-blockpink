@@ -30,7 +30,9 @@ router.post("/", (req, res, next) => {
       });
 
       // 발신자의 잔액이 전송할 양보다 적으면 에러.
-      if (sender.token_amount < swt_amount) {
+      if (Number(sender.token_amount) < Number(swt_amount)) {
+        // console.log(sender.token_amount, swt_amount);
+        // console.log(Number(sender.token_amount), Number(swt_amount));
         return res.status(400).json({ msg: "잔액이 부족합니다." });
       }
       // 수신자가 존재하지 않으면 에러.
@@ -65,8 +67,8 @@ router.post("/", (req, res, next) => {
 
       await transferTx.wait();
 
-      console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:${sender.address}`)
-      console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:${receiver.address}`)
+      console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:${sender.address}`);
+      console.log(`@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:${receiver.address}`);
       //발신자, 수신자의 지갑계정을 조회하고 이를 통해 토큰 양을 DB에 업데이트
       const senderBalance = ethers.utils
         .formatEther(
@@ -90,7 +92,13 @@ router.post("/", (req, res, next) => {
 
       console.log(`sender : ${senderBalance} , receiver : ${receiverBalance}`);
 
-      return res.status(200).json({ msg: "토큰 전송이 완료되었습니다." });
+      return res
+        .status(200)
+        .json({
+          msg: "토큰 전송이 완료되었습니다.",
+          senderBalance,
+          receiverBalance,
+        });
     });
   } catch (err) {
     console.log(err);
