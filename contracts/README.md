@@ -15,9 +15,9 @@ SERVER_PRIVATE_KEY=
 
 <br>
 
-## ERC-20, ERC721 배포 방법
+## ERC-20, ERC-721 배포 방법
 
-openzeppelin 설치 및 ERC-20, ERC721 배포<br>
+openzeppelin 설치 및 ERC-20, ERC-721 배포<br>
 
 ```bash
 $ git submodule update --init
