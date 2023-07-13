@@ -63,6 +63,12 @@ $ npm run start:dev
 $ npm run daemon
 ```
 
+# <<<<<<< HEAD
+
+<br>
+
+> > > > > > > e1dd7620d3782968f544bf39d2008a637e2d9624
+
 ## 서버 초기 설정
 
 post 요청 : /init 로 서버 계정 anvil로부터 가져오기
