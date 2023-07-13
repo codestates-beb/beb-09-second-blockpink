@@ -1,27 +1,30 @@
 ## .env 설정
 
-Not necessary
+### Not necessary
 
-SEPOLIA_RPC_URL=<br>
 ETHERSCAN_API_KEY=
 
-anvil URL
+### anvil URL
 
 LOCAL_RPC_URL=
 
-anvil에서 서버 계정으로 사용할 계정의 프라이빗키
+### anvil에서 서버 계정으로 사용할 계정의 프라이빗키
 
 SERVER_PRIVATE_KEY=
 
-<br>
+## Quick Start
 
-## ERC-20, ERC-721 배포 방법
+```bash
+$ cd contracts
+```
 
-openzeppelin 설치 및 ERC-20, ERC-721 배포<br>
+### submodule의 openzeppelin/openzeppelin-contracts 설치
 
 ```bash
 $ git submodule update --init
 ```
+
+### ERC-20, ERC-721 배포
 
 ```bash
 $ source .env
