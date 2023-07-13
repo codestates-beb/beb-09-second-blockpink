@@ -146,9 +146,9 @@ Material UI(MUI) - CSS 라이브러리
 
 ![마이페이지](https://github.com/codestates-beb/beb-09-second-blockpink/assets/126448531/6c750011-6abd-4c98-b0d0-ebdf920c4739)
 
-## 🖥️ 로그아웃후 로그인 페이지 이동
+## 🖥️ 로그아웃 후 로그인 페이지 이동
 
-![로그아웃후 로그인 페이지 이동](https://github.com/codestates-beb/beb-09-second-blockpink/assets/126448531/6666ba32-548e-4f99-b309-05b1de032b3c)
+![로그아웃 후 로그인 페이지 이동](https://github.com/codestates-beb/beb-09-second-blockpink/assets/126448531/6666ba32-548e-4f99-b309-05b1de032b3c)
 
 ## 🖥️ 오류페이지
 
@@ -166,9 +166,14 @@ Material UI(MUI) - CSS 라이브러리
 
 ![nft minting](https://github.com/codestates-beb/beb-09-second-blockpink/assets/96476768/31f481f2-e758-456f-9534-40a713cd5912)
 
-## 🖥️ ETH Faucet 버튼
+## 🖥️ ETH Faucet 기능
 
 ![ETH Faucet 버튼](https://github.com/codestates-beb/beb-09-second-blockpink/assets/126448531/2b5d4d05-c2b7-4b3a-8015-c6eb2a062364)
+
+## 🖥️ 유저 간 토큰(ERC20, SWT in this service) 전송 기능
+
+![send-token](https://github.com/codestates-beb/beb-09-second-blockpink/assets/96476768/38e81ff8-a42e-4586-a2a1-2c995059e133)
+![receive-token-2](https://github.com/codestates-beb/beb-09-second-blockpink/assets/96476768/a2b80439-f179-4dd0-85b2-15472830defb)
 
 ## 🖥️ 로딩화면
 
