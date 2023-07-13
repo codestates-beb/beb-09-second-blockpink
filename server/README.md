@@ -25,6 +25,7 @@ SERVER_SECRET=
 ERC721_CONTRACT=<br>
 ERC20_CONTRACT=<br>
 
+<br>
 
 ## 실행 방법
 
@@ -59,6 +60,7 @@ Daemon(트랜잭션 모니터링) 실행
 $ npm run daemon
 ```
 
+<br>
 
 ## 서버 초기 설정
 
