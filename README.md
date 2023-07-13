@@ -32,16 +32,27 @@ BlockPink
 
 ### 프론트엔드 플로우차트
 
-<img width="909" alt="Screen Shot 2023-07-12 at 10 51 18 AM" src="https://github.com/codestates-beb/beb-09-second-blockpink/assets/9794836/f2363244-6a03-449b-bb3c-123ac4d3b490">
-
+![Screen Shot 2023-07-12 at 10 51 18 AM](https://github.com/codestates-beb/beb-09-second-blockpink/assets/9794836/f2363244-6a03-449b-bb3c-123ac4d3b490)
 
 ## 기술 스택
 
 ### Contracts
 
-### Server
+Foundry - 컨트랙트 배포(`forge`) 및 로컬 블록체인 노드 운영(`anvil`)
 
-### Client
+### Backend
+
+Express.js - 서버 구축
+
+MySQL - DB 구축
+
+Sequelize - ORM 이용
+
+### Frontend
+
+React
+
+Material UI(MUI) - CSS 라이브러리
 
 ## 프로젝트 기간
 
