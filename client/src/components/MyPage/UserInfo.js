@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../../assets/UserInfo.module.css";
 import { Typography, Button, Modal, Box, TextField } from "@mui/material";
-import SendOutlinedIcon from '@mui/icons-material/Send';
+import SendOutlinedIcon from "@mui/icons-material/Send";
 
 import { UserContext } from "../Context/UserContext";
 
@@ -29,7 +29,12 @@ const UserInfo = () => {
       tokenAmount,
       user.accessToken
     );
-    alert(result.msg);
+    alert(
+      `${result.msg}
+    
+    senderBalance: ${result.senderBalance}
+    receiverBalance: ${result.receiverBalance}`
+    );
   };
 
   const style = {
@@ -85,7 +90,9 @@ const UserInfo = () => {
               style={{ marginLeft: "-54%", marginTop: "1.3%", fontSize: 17 }}
             >
               <span style={{ color: "#000" }}>Sweet Token Amount</span> |{" "}
-              <span style={{ color: "#777" }}>{`${user.token_amount} SWT`}</span>
+              <span
+                style={{ color: "#777" }}
+              >{`${user.token_amount} SWT`}</span>
             </Typography>
           </div>
           <div>
@@ -128,11 +135,26 @@ const UserInfo = () => {
                 boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <div style={{ display: "flex", justifyContent: "center", marginBottom: "-50px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginBottom: "-50px",
+                }}
+              >
                 <SendOutlinedIcon style={{ fontSize: 70, color: "gray" }} />
               </div>
-              <Typography fontSize={20} component="h2" fontWeight="bold" marginLeft="55px" marginTop="80px">
-                Recipient Email to <span style={{ color: "#ff006c", backgroundColor: "#f4f4f4" }}>send</span>
+              <Typography
+                fontSize={20}
+                component="h2"
+                fontWeight="bold"
+                marginLeft="55px"
+                marginTop="80px"
+              >
+                Recipient Email to{" "}
+                <span style={{ color: "#ff006c", backgroundColor: "#f4f4f4" }}>
+                  send
+                </span>
               </Typography>
               <TextField
                 label="recipient email"
@@ -153,8 +175,18 @@ const UserInfo = () => {
                 }}
                 style={{ marginTop: "10px" }}
               />
-              <Typography fontSize={20} component="h2" fontWeight="bold" marginLeft="61.5px" marginBottom="-70px" marginTop="20px">
-                Token amount to <span style={{ color: "#ff006c", backgroundColor: "#f4f4f4" }}>send</span>
+              <Typography
+                fontSize={20}
+                component="h2"
+                fontWeight="bold"
+                marginLeft="61.5px"
+                marginBottom="-70px"
+                marginTop="20px"
+              >
+                Token amount to{" "}
+                <span style={{ color: "#ff006c", backgroundColor: "#f4f4f4" }}>
+                  send
+                </span>
               </Typography>
               <TextField
                 label="token amount"
