@@ -30,19 +30,34 @@ ERC721_CONTRACT=
 
 ERC20_CONTRACT=
 
-## 실행 방법
+### pinata access key
+
+JWT=
+
+API_KEY=
+
+API_KEY_SECRET=
+
+## Quick Start
 
 ### 패키지 설치
 
 ```bash
+$ cd server
 $ npm install
 ```
 
-### 데이터베이스 세팅<br>
+### 데이터베이스 세팅
 
 ```bash
 $ npx sequelize db:create
 $ npx sequelize db:migrate
+```
+
+### 이미지 파일 업로드 될 폴더 생성
+
+```bash
+$ mkdir uploads
 ```
 
 ### 서버 실행
@@ -62,12 +77,6 @@ $ npm run start:dev
 ```bash
 $ npm run daemon
 ```
-
-# <<<<<<< HEAD
-
-<br>
-
-> > > > > > > e1dd7620d3782968f544bf39d2008a637e2d9624
 
 ## 서버 초기 설정
 

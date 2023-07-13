@@ -12,13 +12,19 @@ LOCAL_RPC_URL=
 
 SERVER_PRIVATE_KEY=
 
-## ERC-20, ERC-721 배포 방법
+## Quick Start
 
-openzeppelin 설치 및 ERC-20, ERC-721 배포<br>
+```bash
+$ cd contracts
+```
+
+### submodule의 openzeppelin/openzeppelin-contracts 설치
 
 ```bash
 $ git submodule update --init
 ```
+
+### ERC-20, ERC-721 배포
 
 ```bash
 $ source .env

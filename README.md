@@ -2,15 +2,36 @@
 
 ## 팀명
 
-BlockPink
-<br>
+### BlockPink
 
 ## 팀 구성 및 역할
 
 - 박찬우(팀장)
 
   잡부(백엔드, 컨트랙트, 프론트엔드)
-  <br>
+
+  - 컨트랙트 배포
+
+    - ERC20
+    - ERC721URIStorage - NFTLootBox 형태, 지정한 ERC 20 토큰의 특정 양으로 구매가능
+
+  - API Docs 작성
+  - API 구현
+
+    - users.js - 특정 유저의 정보 조회
+    - posts.js - 게시글 조회, 게시글 작성, 게시글 삭제, 게시글 수정
+    - fildUpload.js - 로컬에 파일 저장, ipfs에 이미지 파일 pinning 및 ipfsHash 가져오기
+    - nft.js - NFTLootBox 로 NFT 민팅
+
+  - 클라이언트 API 연동
+
+    - 회원가입, 로그인, 게시글 조회, 유저 정보 조회, eth-faucet 요청, 게시글 포스팅, nft 민팅
+
+  - 클라이언트 유저 정보 관리(react Context hook, localStorage 사용)
+
+  - 프로젝트 진행 과정 매니징
+
+<br>
 
 - 금윤수
 
@@ -28,10 +49,11 @@ BlockPink
 
   프론드엔드(Sign In, Login, Create NFT, MyPage, Header Logout 초기 구현), Flow Chart 작성
 
+<br>
+
 - 한재경
 
-  프론트엔드  
-
+  프론트엔드
 
 <br>
 
@@ -39,26 +61,26 @@ BlockPink
 
 Follow these steps to get started:
 
-1. **Installing the foundry and running anvil**:
+### 1. **Installing the foundry and running anvil**:
 
-   foundry<br>
+**foundry**
 
-   ```bash
-   $ curl -L https://foundry.paradigm.xyz
-   $ foundryup
-   ```
+```bash
+$ curl -L https://foundry.paradigm.xyz
+$ foundryup
+```
 
-   anvil<br>
+**anvil**
 
-   ```bash
-   $ anvil
-   ```
+```bash
+$ anvil
+```
 
-2. **Contract Deployment**: Deploy the contracts by following the instructions in the [contracts/README.md](./contracts/README.md) file.
+### 2. **Contract Deployment**: Deploy the contracts by following the instructions in the [contracts/README.md](./contracts/README.md) file.
 
-3. **Server Execution**: Start the server by following the instructions in the [server/README.md](./server/README.md) file.
+### 3. **Server Execution**: Start the server by following the instructions in the [server/README.md](./server/README.md) file.
 
-4. **Client Execution**: Run the client application by following the instructions in the [client/README.md](./client/README.md) file.
+### 4. **Client Execution**: Run the client application by following the instructions in the [client/README.md](./client/README.md) file.
 
 <br>
 
@@ -98,6 +120,8 @@ Material UI(MUI) - CSS 라이브러리
 
 2023년 7월 3일 ~ 2023년 7월 13일
 
+# Page View
+
 ## 🖥️ 메인페이지
 
 ![메인화면](https://github.com/codestates-beb/beb-09-second-blockpink/assets/126448531/a2a973a3-1f5d-4af7-af58-e09b01d09b75)
@@ -124,11 +148,15 @@ Material UI(MUI) - CSS 라이브러리
 
 ## 🖥️ 게시글 작성페이지
 
-<img width="600" height="500" alt="게시글 작성 페이지" src="https://github.com/codestates-beb/beb-09-second-blockpink/assets/126448531/1ce817a3-ba71-4f0b-8287-23ff1a965cf7">
+![posting](https://github.com/codestates-beb/beb-09-second-blockpink/assets/96476768/ae8a03d0-f80a-479c-9e90-5ba3279f6732)
 
-## 🖥️ NFT 민팅페이지
+## 🖥️ 게시글 삭제 기능
 
-<img width="600" height="500" alt="NFT 민팅페이지" src="https://github.com/codestates-beb/beb-09-second-blockpink/assets/126448531/8b696685-89c6-4ff3-a0a0-d2f4de16bb3a">
+![delete](https://github.com/codestates-beb/beb-09-second-blockpink/assets/96476768/61787c4f-7866-42ff-81e3-73bfedb3b4e8)
+
+## 🖥️ NFT 민팅페이지
+
+![nft minting](https://github.com/codestates-beb/beb-09-second-blockpink/assets/96476768/31f481f2-e758-456f-9534-40a713cd5912)
 
 ## 🖥️ ETH Faucet 버튼
 
